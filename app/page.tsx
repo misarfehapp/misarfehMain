@@ -31,6 +31,9 @@ export default function Home() {
         count={2}
         pickupEnd={13}
         pickupStart={9}
+        timeH={4}
+        timeM={38}
+        timeS={46}
       />
     </div>
   );
