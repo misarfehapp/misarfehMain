@@ -66,12 +66,12 @@ const RangeSlider = ({
 
     if (minThumbRef.current) {
       const minPercent = (minValue / max) * 100;
-      minThumbRef.current.style.left = `calc(${minPercent}% - 12px)`;
+      minThumbRef.current.style.left = `calc(${minPercent}% - 8px)`;
     }
 
     if (maxThumbRef.current) {
       const maxPercent = (maxValue / max) * 100;
-      maxThumbRef.current.style.left = `calc(${maxPercent}% - 12px)`;
+      maxThumbRef.current.style.left = `calc(${maxPercent}% - 20px)`;
     }
   }, [minValue, maxValue, max]);
 
@@ -79,7 +79,7 @@ const RangeSlider = ({
     <div className="w-[398px] relative">
       <div className="slider relative h-1.5 rounded-md bg-gray-300">
         <div
-          className="progress absolute h-1.5 rounded bg-neutral-neutral15"
+          className="progress absolute h-1.5 rounded bg-black"
           ref={progressRef}
         ></div>
       </div>
@@ -102,18 +102,32 @@ const RangeSlider = ({
           value={maxValue}
           className="range-max absolute w-full -top-1 h-1.5 bg-transparent appearance-none pointer-events-none"
         />
-        {/* Custom Thumbs */}
+        {/* Custom Thumbs and Value Labels */}
         <div
           ref={minThumbRef}
           className="absolute -top-3.5 z-10 pointer-events-none"
         >
           <CustomThumb />
+          <div className="absolute -bottom-9 left-1/2 transform -translate-x-1/2 text-center bg-gray-200 py-0.5 px-2  w-[50px] h-[24px] text-neutral-neutral30 rounded-rounded-6">
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 left-[19px] -top-1 h-[10px] w-[10px] transform rotate-45 bg-gray-200 "
+            />
+            {minValue}
+          </div>
         </div>
         <div
           ref={maxThumbRef}
           className="absolute -top-3.5 z-10 pointer-events-none"
         >
           <CustomThumb />
+          <div className="absolute -bottom-9 left-1/2 transform -translate-x-1/2 text-center bg-gray-200 py-0.5 px-2 w-[50px] h-[24px] text-neutral-neutral30 rounded-rounded-6">
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 left-[19px] -top-1 h-[10px] w-[10px] transform rotate-45 bg-gray-200 "
+            />
+            {maxValue}
+          </div>
         </div>
       </div>
     </div>
