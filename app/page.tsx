@@ -3,12 +3,13 @@ import CategoryButton from "@/components/categories/CategoryButton";
 import Input from "@/components/input/Input";
 import OptionBar from "@/components/OptionBar/OptionBar";
 import OTPInput from "@/components/OTPInput/OTPInput";
+import ProductTracker from "@/components/productTracker/ProductTracker";
 import RangeSlider from "@/components/RangeSlider/RangeSlider";
 import Segment from "@/components/segment/Segment";
 
 export default function Home() {
   return (
-    <div className="mx-4 flex flex-col space-y-10 my-4 ">
+    <div className="mx-4 flex flex-col space-y-16 my-4 ">
       <h1 className="mb-8">components</h1>
       <Input />
       <OTPInput />
@@ -23,6 +24,13 @@ export default function Home() {
         max={10000}
         step={100}
         priceCap={1000}
+      />
+      <ProductTracker
+        title="سورپرایز صبحانه"
+        address="فست فود لاویا - بلوار بهشتی , 5.6 کیلومتر"
+        count={2}
+        pickupEnd={13}
+        pickupStart={9}
       />
     </div>
   );
