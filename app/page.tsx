@@ -3,10 +3,12 @@ import CategoryButton from "@/components/categories/CategoryButton";
 import Input from "@/components/input/Input";
 import OptionBar from "@/components/OptionBar/OptionBar";
 import OTPInput from "@/components/OTPInput/OTPInput";
+import ProductCard from "@/components/productCard/ProductCard";
 import ProductTracker from "@/components/productTracker/ProductTracker";
 import RangeSlider from "@/components/RangeSlider/RangeSlider";
 import Segment from "@/components/segment/Segment";
-
+import ProductImageSrc from "@/components/productCard/bg.jpeg";
+import RestaurantImageSrc from "@/components/productCard/restaurant.jpeg";
 export default function Home() {
   return (
     <div className="mx-4 flex flex-col space-y-16 my-4 ">
@@ -34,6 +36,14 @@ export default function Home() {
         timeH={4}
         timeM={38}
         timeS={46}
+      />
+      <ProductCard
+        title="صبحانه"
+        discount={10}
+        priceAfter={118.0}
+        priceBefore={128.0}
+        productImageSrc={ProductImageSrc}
+        restaurantImageSrc={RestaurantImageSrc}
       />
     </div>
   );
