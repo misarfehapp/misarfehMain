@@ -40,10 +40,15 @@ export default function Home() {
       <ProductCard
         title="صبحانه"
         discount={10}
-        priceAfter={118.0}
-        priceBefore={128.0}
+        priceAfter={118_000}
+        priceBefore={128_000}
         productImageSrc={ProductImageSrc}
         restaurantImageSrc={RestaurantImageSrc}
+        descriptionTitle="سورپرایز صبحانه"
+        description="برداشت امروز:"
+        startPickUp="20:00"
+        endPickUp="20:30"
+        distance={5.6}
       />
     </div>
   );
