@@ -92,7 +92,7 @@ const ProductCard = ({
               {startPickUp} <span>-</span> {endPickUp}
             </p>
           </div>
-          <div className="text-xs flex flex-row items-center text-neutral-neutral40">
+          <div className="text-xs flex flex-row items-center text-neutral-neutral40 gap-0.5">
             <LocationIcon />
             <p className="flex flex-row gap-1">
               {distance} <span>ک</span>

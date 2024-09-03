@@ -30,4 +30,7 @@
     -webkit-appearance: none;
     @apply bg-transparent;
   }
+  :root {
+    --radius: 0.5rem;
+  }
 }
