@@ -11,6 +11,7 @@ import ProductImageSrc from "@/components/productCard/bg.jpeg";
 import RestaurantImageSrc from "@/components/productCard/restaurant.jpeg";
 import Comments from "@/components/comments/Comments";
 import DrawerComponent from "@/components/drawer/DrawerComponent";
+import SuccessPopUp from "@/components/success pop-up/SuccessPopUp";
 export default function Home() {
   return (
     <div className="mx-4 flex flex-col space-y-28 my-4 justify-center items-center">
@@ -64,7 +65,8 @@ export default function Home() {
         />
       </div>
       <div className="flex flex-row justify-around items-center gap-10">
-        <DrawerComponent/>
+        <DrawerComponent />
+        <SuccessPopUp trackingCode={98276} />
       </div>
     </div>
   );
