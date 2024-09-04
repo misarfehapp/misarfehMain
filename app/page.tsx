@@ -12,6 +12,7 @@ import RestaurantImageSrc from "@/components/productCard/restaurant.jpeg";
 import Comments from "@/components/comments/Comments";
 import DrawerComponent from "@/components/drawer/DrawerComponent";
 import SuccessPopUp from "@/components/success pop-up/SuccessPopUp";
+import Stepper from "@/components/stepper/Stepper";
 export default function Home() {
   return (
     <div className="mx-4 flex flex-col space-y-28 my-4 justify-center items-center">
@@ -67,6 +68,7 @@ export default function Home() {
       <div className="flex flex-row justify-around items-center gap-10">
         <DrawerComponent />
         <SuccessPopUp trackingCode={98276} />
+        <Stepper currentStep={2} progress={60}/>
       </div>
     </div>
   );
