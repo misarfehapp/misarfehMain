@@ -58,6 +58,7 @@ const Stepper = ({ currentStep, progress }: StepperProps) => {
         {StepsToReceive.map((s, index) => (
           <p
             className={`text-2xs absolute ${index < currentStep ? "text-light-primary" : "text-neutral-neutral30"} ${index === 2 && "-left-[6px]"} ${index === 1 && "left-[127px]"} ${index === 0 && "-right-[6px]"}`}
+            key={index}
           >
             {s.step}
           </p>

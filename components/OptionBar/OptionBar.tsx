@@ -3,8 +3,6 @@ import { useState } from "react";
 
 const OptionBar = () => {
   const [selectedOption, setSelectedOption] = useState<string>("نقشه");
-  console.log(selectedOption);
-
   return (
     <div className="w-[398px] h-[52px] justify-around bg-neutral-neutral90 rounded-rounded-13 flex items-center relative">
       <div
