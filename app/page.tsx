@@ -17,6 +17,7 @@ import LocationIndicator from "@/components/map tools/LocationIndicator";
 import PlaceIndicator from "@/components/map tools/PlaceIndicator";
 import PlaceAmount from "@/components/map tools/PlaceAmount";
 import CurrentLocation from "@/components/map tools/CurrentLocation";
+import BalanceCard from "@/components/balance indicator/BalanceCard";
 export default function Home() {
   return (
     <div className="mx-4 flex flex-col space-y-28 my-4 justify-center items-center">
@@ -78,9 +79,10 @@ export default function Home() {
         <div className="flex flex-col justify-center items-center gap-5">
           <LocationIndicator />
           <PlaceIndicator />
-          <PlaceAmount amount={30}/>
-          <CurrentLocation/>
+          <PlaceAmount amount={30} />
+          <CurrentLocation />
         </div>
+        <BalanceCard balance={200_000} />
       </div>
     </div>
   );
