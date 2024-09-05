@@ -2,7 +2,7 @@ import LocationIcon from "./LocationIcon";
 
 const LocationIndicator = () => {
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center shadow-Drop Shadow/300 items-center">
       <div className="w-9 h-9 bg-[#6B6B6B] rounded-full flex justify-center items-center">
         <LocationIcon />
       </div>

@@ -14,6 +14,7 @@ import DrawerComponent from "@/components/drawer/DrawerComponent";
 import SuccessPopUp from "@/components/success pop-up/SuccessPopUp";
 import Stepper from "@/components/stepper/Stepper";
 import LocationIndicator from "@/components/map tools/LocationIndicator";
+import PlaceIndicator from "@/components/map tools/PlaceIndicator";
 export default function Home() {
   return (
     <div className="mx-4 flex flex-col space-y-28 my-4 justify-center items-center">
@@ -69,14 +70,14 @@ export default function Home() {
       <div className="flex flex-row justify-around items-center gap-10">
         <DrawerComponent />
         <SuccessPopUp trackingCode={98276} />
-        <Stepper currentStep={2} progress={60}/>
+        <Stepper currentStep={2} progress={60} />
       </div>
-       <div className="flex flex-row justify-around items-center gap-10">
-        <div className="flex flex-col">
-        <LocationIndicator/>
-
+      <div className="flex flex-row justify-around items-center gap-10">
+        <div className="flex flex-col justify-center items-center gap-5">
+          <LocationIndicator />
+          <PlaceIndicator />
         </div>
-       </div>
+      </div>
     </div>
   );
 }
