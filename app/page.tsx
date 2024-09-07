@@ -50,6 +50,7 @@ export default function Home() {
           timeH={4}
           timeM={38}
           timeS={46}
+          progress={70}
         />
         <ProductCard
           title="صبحانه"

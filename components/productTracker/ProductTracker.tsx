@@ -11,6 +11,7 @@ interface ProductTrackerProps {
   timeH: number;
   timeM: number;
   timeS: number;
+  progress:number;
 }
 const ProductTracker = ({
   title,
@@ -21,6 +22,7 @@ const ProductTracker = ({
   timeH,
   timeM,
   timeS,
+  progress
 }: ProductTrackerProps) => {
   return (
     <div className="flex flex-col w-[398px] h-[110px] p-3 gap-4 bg-neutral-neutral95 rounded-rounded-9 ">
@@ -63,7 +65,9 @@ const ProductTracker = ({
       {/* progress bar */}
       <div className="flex flex-row-reverse items-center gap-2">
         <div className="bg-neutral-neutral80 h-[4px] w-[326px] rounded-full flex flex-row-reverse ">
-          <div className="bg-light-primary w-[70%] h-full rounded-full" />
+          <div className="bg-light-primary  h-full rounded-full"
+          style={{width: `${progress}%`}}
+          />
         </div>
         <div className="w-[40px] h-[14px] text-[10px] font-bold text-neutral-neutral35">
           <time>{timeH}:{timeM}:{timeS}</time>
