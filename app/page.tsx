@@ -86,24 +86,29 @@ export default function Home() {
           <CurrentLocation />
         </div>
         <BalanceCard balance={200_000} />
-        <TransactionCard
-          type="increase"
-          day={1}
-          month={2}
-          year={1403}
-          mount={200_000}
-        />
-        <TransactionCard
-          type="decrease"
-          day={1}
-          month={2}
-          year={1403}
-          mount={200_000}
-        />
+        <div className="flex flex-col gap-5">
+          <TransactionCard
+            type="increase"
+            day={1}
+            month={2}
+            year={1403}
+            mount={200_000}
+          />
+          <TransactionCard
+            type="decrease"
+            day={1}
+            month={2}
+            year={1403}
+            mount={200_000}
+          />
+        </div>
+      </div>
+      <div className="flex flex-row justify-around items-center gap-10">
         <div className="flex flex-col gap-5">
           <CheckBox />
           <CheckBox />
         </div>
+        <CategoryButton category="رستوران" />
       </div>
     </div>
   );
