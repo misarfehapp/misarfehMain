@@ -19,6 +19,7 @@ import PlaceAmount from "@/components/map tools/PlaceAmount";
 import CurrentLocation from "@/components/map tools/CurrentLocation";
 import BalanceCard from "@/components/balance indicator/BalanceCard";
 import TransactionCard from "@/components/transaction Card/TransactionCard";
+import CheckBox from "@/components/check box/CheckBox";
 export default function Home() {
   return (
     <div className="mx-4 flex flex-col space-y-28 my-4 justify-center items-center">
@@ -98,6 +99,10 @@ export default function Home() {
           year={1403}
           mount={200_000}
         />
+        <div className="flex flex-col gap-5">
+          <CheckBox />
+          <CheckBox />
+        </div>
       </div>
     </div>
   );
