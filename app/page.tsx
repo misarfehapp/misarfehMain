@@ -18,6 +18,7 @@ import PlaceIndicator from "@/components/map tools/PlaceIndicator";
 import PlaceAmount from "@/components/map tools/PlaceAmount";
 import CurrentLocation from "@/components/map tools/CurrentLocation";
 import BalanceCard from "@/components/balance indicator/BalanceCard";
+import TransactionCard from "@/components/transaction Card/TransactionCard";
 export default function Home() {
   return (
     <div className="mx-4 flex flex-col space-y-28 my-4 justify-center items-center">
@@ -83,6 +84,20 @@ export default function Home() {
           <CurrentLocation />
         </div>
         <BalanceCard balance={200_000} />
+        <TransactionCard
+          type="increase"
+          day={1}
+          month={2}
+          year={1403}
+          mount={200_000}
+        />
+        <TransactionCard
+          type="decrease"
+          day={1}
+          month={2}
+          year={1403}
+          mount={200_000}
+        />
       </div>
     </div>
   );
