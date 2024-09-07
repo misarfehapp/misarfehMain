@@ -32,8 +32,8 @@ const DrawerComponent = () => {
             </div>
           </DrawerHeader>
           <div className="flex flex-row justify-center items-end space-x-4 mt-[20px]">
-            <Segment />
-            <Segment />
+            <Segment sensitivity={false} />
+            <Segment sensitivity={true} />
           </div>
           <DrawerFooter className="flex justify-center mt-4">
             <button className="bg-primary text-black py-2 px-4 rounded-md">

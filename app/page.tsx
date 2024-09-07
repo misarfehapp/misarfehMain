@@ -26,7 +26,8 @@ export default function Home() {
       <div className="flex flex-row justify-around items-center gap-10 ">
         <Input />
         <OTPInput />
-        <Segment />
+        <Segment sensitivity={false} />
+        <Segment sensitivity={true} />
       </div>
       <div className="flex flex-row justify-around items-center gap-10">
         <Button />
