@@ -56,30 +56,31 @@ const validPrefixes = [
   "09998",
 ];
 
-const isValidPhoneNumber = (phoneNumber: string) => {
-  if (phoneNumber.length !== 11) return false;
-  return validPrefixes.some((prefix) => phoneNumber.startsWith(prefix));
-};
-
 const Input = () => {
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [isValid, setIsValid] = useState<boolean>(true);
   const [showError, setShowError] = useState(false);
 
+  const isValidPhoneNumber = (phoneNumber: string) => {
+    if (phoneNumber.length !== 11) return false;
+    return validPrefixes.some((prefix) => phoneNumber.startsWith(prefix));
+  };
+
   const handleChange = (e: { target: { value: any } }) => {
     const value = e.target.value;
     if (value.length <= 11) {
       setPhoneNumber(value);
-    }
-    if (value.length === 11) {
-      const valid = isValidPhoneNumber(value);
-      setIsValid(valid);
-      setShowError(!valid);
-    } else {
-      setIsValid(true);
-      setShowError(false);
+      if (value.length === 11) {
+        const valid = isValidPhoneNumber(value);
+        setIsValid(valid);
+        setShowError(!valid);
+      } else {
+        setIsValid(true);
+        setShowError(false);
+      }
     }
   };
+
   return (
     <div className="relative w-[310px] h-[70px]">
       <label
