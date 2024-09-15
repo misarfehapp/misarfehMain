@@ -19,6 +19,7 @@ const page = () => {
         <Input type="phone" phone="09924500910" />
         <Input type="province" province="فارس" city="شیراز" />
         <Input type="sex" sex="ترجیح می دهم نگویم" />
+        <Input type="email" email="ranjbarmohad@gmail.com" />
       </div>
     </div>
   );

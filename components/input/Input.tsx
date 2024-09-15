@@ -119,12 +119,13 @@ const provincesOfIran = [
 ];
 const sexes = ["مرد", "زن", "ترجیح می دهم نگویم"];
 interface InputProps {
-  type: "province" | "city" | "name" | "phone" | "sex";
+  type: "province" | "city" | "name" | "phone" | "sex" | "email";
   name?: string;
   phone?: string;
   province?: string;
   city?: string;
   sex?: "مرد" | "زن" | "ترجیح می دهم نگویم";
+  email?: string;
 }
 const citiesByProvince: Record<string, string[]> = {
   تهران: [
@@ -286,12 +287,22 @@ const citiesByProvince: Record<string, string[]> = {
   "خراسان شمالی": ["بجنورد", "شیروان", "اسفراین", "آشخانه", "فاروج"],
 };
 
-const Input = ({ type, name, phone, province, city, sex }: InputProps) => {
+const Input = ({
+  type,
+  name,
+  phone,
+  province,
+  city,
+  sex,
+  email,
+}: InputProps) => {
   const [phoneNumber, setPhoneNumber] = useState<string>(phone || "");
   const [isValid, setIsValid] = useState<boolean>(true);
   const [showError, setShowError] = useState(false);
   const [isNameEditable, setIsNameEditable] = useState<boolean>(false);
+  const [isEmailEditable, setIsEmailEditable] = useState<boolean>(false);
   const [editableName, setEditableName] = useState<string>(name || "");
+  const [editableEmail, setEditableEmail] = useState<string>(email || "");
   const [selectedProvince, setSelectedProvince] = useState<string>(
     province || ""
   );
@@ -326,11 +337,14 @@ const Input = ({ type, name, phone, province, city, sex }: InputProps) => {
       }
     } else if (type === "name" && isNameEditable) {
       setEditableName(value);
+    } else if (type === "email" && isEmailEditable) {
+      setEditableEmail(value);
     }
   };
 
   const handlePenClick = () => {
-    setIsNameEditable(true);
+    type === "name" && setIsNameEditable(true);
+    type === "email" && setIsEmailEditable(true);
     setTimeout(() => {
       inputRef.current?.focus();
       inputRef.current?.select();
@@ -340,11 +354,11 @@ const Input = ({ type, name, phone, province, city, sex }: InputProps) => {
     setSelectedProvince(province);
     setSelectedCity(""); // Reset city when the province changes
   };
-  const handleCityChange = (value: string) => {
-    setSelectedCity(value);
-  };
+  // const handleCityChange = (value: string) => {
+  //   setSelectedCity(value);
+  // };
   const handleSexChange = (value: string) => {
-    setSelectedSex(value)
+    setSelectedSex(value);
   };
 
   return (
@@ -359,8 +373,15 @@ const Input = ({ type, name, phone, province, city, sex }: InputProps) => {
           {type === "province" && "استان سکونت"}
           {type === "city" && "شهر سکونت"}
           {type === "sex" && "جنسیت"}
+          {type === "email" && "ایمیل"}
         </label>
         {type === "name" && (
+          <PenIcon
+            className="absolute top-1/3 left-8 cursor-pointer"
+            onClick={handlePenClick}
+          />
+        )}
+        {type === "email" && (
           <PenIcon
             className="absolute top-1/3 left-8 cursor-pointer"
             onClick={handlePenClick}
@@ -372,9 +393,7 @@ const Input = ({ type, name, phone, province, city, sex }: InputProps) => {
             <Select onValueChange={handleSexChange} value={selectedSex}>
               <SelectTrigger className="h-12 bg-[#FBF8FD] border-[1.5px] border-[#C7C6CA] rounded-rounded-7 pl-4 pr-5 text-xs text-neutral-neutral30">
                 {selectedSex ? (
-                  <span>
-                    {selectedSex }
-                  </span>
+                  <span>{selectedSex}</span>
                 ) : (
                   <span className="text-neutral-neutral30">
                     جنسیت خود را انتخاب کنید
@@ -447,18 +466,30 @@ const Input = ({ type, name, phone, province, city, sex }: InputProps) => {
             )}
           </div>
         )}
-        {(type === "phone" || type === "name") && (
+        {(type === "phone" || type === "name" || type === "email") && (
           <input
             id="input"
             ref={inputRef}
             style={{ direction: "rtl" }}
-            type={type === "phone" ? "number" : "text"}
-            value={type === "phone" ? phoneNumber : editableName}
+            type={
+              type === "phone" ? "number" : type === "email" ? "email" : "text"
+            }
+            value={
+              type === "phone"
+                ? phoneNumber
+                : type === "name"
+                  ? editableName
+                  : editableEmail
+            }
             onChange={handleChange}
             placeholder={
-              type === "phone" ? "09121234567" : "نام و نام خانوادگی"
+              type === "phone"
+                ? "09121234567"
+                : type === "name"
+                  ? "نام و نام خانوادگی"
+                  : "example@gmail.com"
             }
-            disabled={type === "name" && !isNameEditable}
+            disabled={type === "name" ? !isNameEditable: !isEmailEditable}
             className={`h-12 mx-4 w-[398px] border-[1.5px] ${
               type === "phone" && !isValid
                 ? "border-red-500"
