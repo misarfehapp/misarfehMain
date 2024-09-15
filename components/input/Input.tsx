@@ -117,12 +117,14 @@ const provincesOfIran = [
   "هرمزگان",
   "همدان",
 ];
+const sexes = ["مرد", "زن", "ترجیح می دهم نگویم"];
 interface InputProps {
-  type: "province" | "city" | "name" | "phone";
+  type: "province" | "city" | "name" | "phone" | "sex";
   name?: string;
   phone?: string;
   province?: string;
   city?: string;
+  sex?: "مرد" | "زن" | "ترجیح می دهم نگویم";
 }
 const citiesByProvince: Record<string, string[]> = {
   تهران: [
@@ -284,7 +286,7 @@ const citiesByProvince: Record<string, string[]> = {
   "خراسان شمالی": ["بجنورد", "شیروان", "اسفراین", "آشخانه", "فاروج"],
 };
 
-const Input = ({ type, name, phone, province, city }: InputProps) => {
+const Input = ({ type, name, phone, province, city, sex }: InputProps) => {
   const [phoneNumber, setPhoneNumber] = useState<string>(phone || "");
   const [isValid, setIsValid] = useState<boolean>(true);
   const [showError, setShowError] = useState(false);
@@ -294,7 +296,7 @@ const Input = ({ type, name, phone, province, city }: InputProps) => {
     province || ""
   );
   const [selectedCity, setSelectedCity] = useState<string>(city || "");
-
+  const [selectedSex, setSelectedSex] = useState<string>(sex || "");
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -341,24 +343,53 @@ const Input = ({ type, name, phone, province, city }: InputProps) => {
   const handleCityChange = (value: string) => {
     setSelectedCity(value);
   };
+  const handleSexChange = (value: string) => {
+    setSelectedSex(value)
+  };
 
   return (
     <div className="relative min-h-[48px]">
       <div className="flex justify-center">
         <label
           htmlFor="input"
-          className={`absolute right-7 bg-gradient-to-t from-[#FBF8FD] to-white text-center -top-2 px-1 font-normal text-2xs h-[14px] ${type === "phone" && "w-14  text-neutral-neutral40"} ${type === "name" && "w-24  text-neutral-neutral40"} ${type === "province" && " text-neutral-neutral40"}`}
+          className={`absolute right-7 bg-gradient-to-t from-[#FBF8FD] to-white text-center text-neutral-neutral40 -top-2 px-1 font-normal text-2xs h-[14px] ${type === "phone" && "w-14"} ${type === "name" && "w-24"}`}
         >
           {type === "phone" && "شماره تلفن"}
           {type === "name" && "نام و نام خانوادگی"}
           {type === "province" && "استان سکونت"}
           {type === "city" && "شهر سکونت"}
+          {type === "sex" && "جنسیت"}
         </label>
         {type === "name" && (
           <PenIcon
             className="absolute top-1/3 left-8 cursor-pointer"
             onClick={handlePenClick}
           />
+        )}
+        {type === "sex" && (
+          <div className="mx-4 gap-4 flex flex-col w-[398px] justify-center items-center">
+            {/* Sex Select */}
+            <Select onValueChange={handleSexChange} value={selectedSex}>
+              <SelectTrigger className="h-12 bg-[#FBF8FD] border-[1.5px] border-[#C7C6CA] rounded-rounded-7 pl-4 pr-5 text-xs text-neutral-neutral30">
+                {selectedSex ? (
+                  <span>
+                    {selectedSex }
+                  </span>
+                ) : (
+                  <span className="text-neutral-neutral30">
+                    جنسیت خود را انتخاب کنید
+                  </span>
+                )}
+              </SelectTrigger>
+              <SelectContent>
+                {sexes.map((sexOption) => (
+                  <SelectItem key={sexOption} value={sexOption}>
+                    {sexOption}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
         )}
         {type === "province" && (
           <div className=" mx-4 gap-4 flex flex-col  w-[398px] justify-center items-center">
