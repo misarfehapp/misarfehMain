@@ -118,13 +118,173 @@ const provincesOfIran = [
   "همدان",
 ];
 interface InputProps {
-  type: string;
+  type: "province" | "city" | "name" | "phone";
   name?: string;
   phone?: string;
   province?: string;
+  city?: string;
 }
+const citiesByProvince: Record<string, string[]> = {
+  تهران: [
+    "تهران",
+    "شهریار",
+    "اسلامشهر",
+    "ری",
+    "ورامین",
+    "دماوند",
+    "بومهن",
+    "رودهن",
+    "ملارد",
+  ],
+  اصفهان: [
+    "اصفهان",
+    "کاشان",
+    "خمینی‌شهر",
+    "نجف‌آباد",
+    "شاهین‌شهر",
+    "فلاورجان",
+    "زرین‌شهر",
+    "سمیرم",
+    "آران و بیدگل",
+  ],
+  فارس: [
+    "شیراز",
+    "مرودشت",
+    "فسا",
+    "کازرون",
+    "لار",
+    "جهرم",
+    "داراب",
+    "لامرد",
+    "فیروزآباد",
+  ],
+  "خراسان رضوی": [
+    "مشهد",
+    "نیشابور",
+    "سبزوار",
+    "تربت حیدریه",
+    "قوچان",
+    "فریمان",
+    "چناران",
+    "طرقبه",
+  ],
+  "آذربایجان شرقی": [
+    "تبریز",
+    "مراغه",
+    "مرند",
+    "میانه",
+    "اهر",
+    "شبستر",
+    "هشترود",
+    "بستان‌آباد",
+  ],
+  مازندران: [
+    "ساری",
+    "آمل",
+    "بابل",
+    "قائم‌شهر",
+    "نوشهر",
+    "چالوس",
+    "رامسر",
+    "بابلسر",
+    "نور",
+  ],
+  خوزستان: [
+    "اهواز",
+    "آبادان",
+    "خرمشهر",
+    "دزفول",
+    "بهبهان",
+    "ماهشهر",
+    "شوشتر",
+    "اندیمشک",
+  ],
+  کرمان: [
+    "کرمان",
+    "رفسنجان",
+    "جیرفت",
+    "سیرجان",
+    "بم",
+    "زرند",
+    "کهنوج",
+    "رودبار",
+    "راور",
+  ],
+  گیلان: [
+    "رشت",
+    "بندر انزلی",
+    "لاهیجان",
+    "رودسر",
+    "فومن",
+    "صومعه‌سرا",
+    "تالش",
+    "آستارا",
+  ],
+  البرز: ["کرج", "فردیس", "نظرآباد", "هشتگرد", "اشتهارد"],
+  "آذربایجان غربی": [
+    "ارومیه",
+    "خوی",
+    "میاندوآب",
+    "مهاباد",
+    "بوکان",
+    "سلماس",
+    "پیرانشهر",
+    "نقده",
+  ],
+  قم: ["قم"],
+  مرکزی: ["اراک", "ساوه", "خمین", "محلات", "تفرش", "دلیجان", "شازند"],
+  کرمانشاه: [
+    "کرمانشاه",
+    "اسلام‌آباد غرب",
+    "سنقر",
+    "هرسین",
+    "کنگاور",
+    "جوانرود",
+    "صحنه",
+  ],
+  "سیستان و بلوچستان": [
+    "زاهدان",
+    "چابهار",
+    "زابل",
+    "خاش",
+    "ایرانشهر",
+    "سراوان",
+    "سرباز",
+  ],
+  کردستان: ["سنندج", "سقز", "بانه", "مریوان", "بیجار", "قروه", "دیواندره"],
+  هرمزگان: ["بندرعباس", "میناب", "قشم", "بندر لنگه", "کیش", "جاسک", "بستک"],
+  لرستان: [
+    "خرم‌آباد",
+    "بروجرد",
+    "دورود",
+    "کوهدشت",
+    "الیگودرز",
+    "ازنا",
+    "پلدختر",
+  ],
+  قزوین: ["قزوین", "البرز", "تاکستان", "بوئین زهرا", "آبیک"],
+  زنجان: ["زنجان", "ابهر", "خرمدره", "قیدار", "ماه‌نشان"],
+  همدان: ["همدان", "ملایر", "نهاوند", "تویسرکان", "رزن", "اسدآباد"],
+  یزد: ["یزد", "میبد", "اردکان", "مهریز", "تفت", "بافق"],
+  اردبیل: ["اردبیل", "مشگین‌شهر", "پارس‌آباد", "خلخال", "گرمی"],
+  بوشهر: ["بوشهر", "برازجان", "کنگان", "دیلم", "گناوه", "جم", "عسلویه"],
+  "چهارمحال و بختیاری": ["شهرکرد", "بروجن", "فارسان", "لردگان", "کوهرنگ"],
+  سمنان: ["سمنان", "شاهرود", "دامغان", "گرمسار", "مهدی‌شهر"],
+  گلستان: [
+    "گرگان",
+    "گنبد کاووس",
+    "علی‌آباد کتول",
+    "آق‌قلا",
+    "مینودشت",
+    "بندر ترکمن",
+  ],
+  ایلام: ["ایلام", "دهلران", "آبدانان", "مهران", "دره‌شهر"],
+  "کهگیلویه و بویراحمد": ["یاسوج", "دوگنبدان", "دهدشت", "لیکک"],
+  "خراسان جنوبی": ["بیرجند", "قائن", "طبس", "فردوس", "نهبندان"],
+  "خراسان شمالی": ["بجنورد", "شیروان", "اسفراین", "آشخانه", "فاروج"],
+};
 
-const Input = ({ type, name, phone, province }: InputProps) => {
+const Input = ({ type, name, phone, province, city }: InputProps) => {
   const [phoneNumber, setPhoneNumber] = useState<string>(phone || "");
   const [isValid, setIsValid] = useState<boolean>(true);
   const [showError, setShowError] = useState(false);
@@ -133,6 +293,7 @@ const Input = ({ type, name, phone, province }: InputProps) => {
   const [selectedProvince, setSelectedProvince] = useState<string>(
     province || ""
   );
+  const [selectedCity, setSelectedCity] = useState<string>(city || "");
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -173,17 +334,25 @@ const Input = ({ type, name, phone, province }: InputProps) => {
       inputRef.current?.select();
     }, 0);
   };
+  const handleProvinceChange = (province: string) => {
+    setSelectedProvince(province);
+    setSelectedCity(""); // Reset city when the province changes
+  };
+  const handleCityChange = (value: string) => {
+    setSelectedCity(value);
+  };
 
   return (
     <div className="relative min-h-[48px]">
       <div className="flex justify-center">
         <label
           htmlFor="input"
-          className={`absolute bg-gradient-to-t from-[#FBF8FD] to-white text-center -top-2 px-1 font-normal text-2xs h-[14px] ${type === "phone" && "w-14 left-[18rem] text-neutral-neutral40"} ${type === "name" && "w-24 left-[15.5rem] text-neutral-neutral40"} ${type === "province" && "left-[17.5rem]"}`}
+          className={`absolute right-7 bg-gradient-to-t from-[#FBF8FD] to-white text-center -top-2 px-1 font-normal text-2xs h-[14px] ${type === "phone" && "w-14  text-neutral-neutral40"} ${type === "name" && "w-24  text-neutral-neutral40"} ${type === "province" && " text-neutral-neutral40"}`}
         >
           {type === "phone" && "شماره تلفن"}
           {type === "name" && "نام و نام خانوادگی"}
           {type === "province" && "استان سکونت"}
+          {type === "city" && "شهر سکونت"}
         </label>
         {type === "name" && (
           <PenIcon
@@ -192,25 +361,60 @@ const Input = ({ type, name, phone, province }: InputProps) => {
           />
         )}
         {type === "province" && (
-          <Select onValueChange={setSelectedProvince} value={selectedProvince}>
-            <SelectTrigger className="h-12 mx-4 w-[398px] bg-[#FBF8FD] border-[1.5px] border-[#C7C6CA] rounded-rounded-7 pl-4 pr-5 text-xs text-neutral-neutral30">
-              {/* No need for SelectValue, just display selectedProvince directly */}
-              {selectedProvince ? (
-                <span>{selectedProvince}</span>
-              ) : (
-                <span className="text-neutral-neutral30">
-                  استان سکونت خود را انتخاب کنید
-                </span>
-              )}
-            </SelectTrigger>
-            <SelectContent>
-              {provincesOfIran.map((province) => (
-                <SelectItem key={province} value={province}>
-                  {province}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <div className=" mx-4 gap-4 flex flex-col  w-[398px] justify-center items-center">
+            {/* Province Select */}
+            <Select
+              onValueChange={handleProvinceChange}
+              value={selectedProvince}
+            >
+              <SelectTrigger className="h-12   bg-[#FBF8FD] border-[1.5px] border-[#C7C6CA] rounded-rounded-7 pl-4 pr-5 text-xs text-neutral-neutral30">
+                {selectedProvince ? (
+                  <span>{selectedProvince}</span>
+                ) : (
+                  <span className="text-neutral-neutral30">
+                    استان سکونت خود را انتخاب کنید
+                  </span>
+                )}
+              </SelectTrigger>
+              <SelectContent>
+                {provincesOfIran.map((province) => (
+                  <SelectItem key={province} value={province}>
+                    {province}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            {/* City Select (dependent on province) */}
+            {selectedProvince && (
+              <>
+                <label
+                  htmlFor="city"
+                  className="absolute bg-gradient-to-t from-[#FBF8FD] to-white text-center top-14 right-7 px-1 font-normal text-2xs h-[14px] text-neutral-neutral40"
+                >
+                  شهر سکونت
+                </label>
+                <Select onValueChange={setSelectedCity} value={selectedCity}>
+                  <SelectTrigger className="h-12 bg-[#FBF8FD] border-[1.5px] border-[#C7C6CA] rounded-rounded-7 pl-4 pr-5 text-xs text-neutral-neutral30">
+                    {selectedCity ? (
+                      <span>{selectedCity}</span>
+                    ) : (
+                      <span className="text-neutral-neutral30">
+                        شهر خود را انتخاب کنید
+                      </span>
+                    )}
+                  </SelectTrigger>
+                  <SelectContent>
+                    {citiesByProvince[selectedProvince]?.map((city) => (
+                      <SelectItem key={city} value={city}>
+                        {city}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </>
+            )}
+          </div>
         )}
         {(type === "phone" || type === "name") && (
           <input
@@ -228,9 +432,7 @@ const Input = ({ type, name, phone, province }: InputProps) => {
               type === "phone" && !isValid
                 ? "border-red-500"
                 : "border-[#C7C6CA]"
-            } rounded-rounded-7 bg-[#FBF8FD] pr-5 pl-14 outline-none text-xs text-neutral-neutral30 ${
-              type === "name" && !isNameEditable && "bg-gray-100"
-            }`}
+            } rounded-rounded-7 bg-[#FBF8FD] pr-5 pl-14 outline-none text-xs text-neutral-neutral30`}
           />
         )}
       </div>

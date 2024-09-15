@@ -17,7 +17,8 @@ const page = () => {
       <div className="my-6 flex flex-col gap-4">
         <Input type="name" name="محمد رنجبر" />
         <Input type="phone" phone="09924500910" />
-        <Input type="province" province="فارس" />
+        <Input type="province" province="فارس" city="شیراز" />
+        
       </div>
     </div>
   );
