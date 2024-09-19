@@ -1,14 +1,17 @@
 import Input from "@/components/input/Input";
 import ArrowBack from "@/components/user header/ArrowBack";
 import UserHeader from "@/components/user header/UserHeader";
+import Link from "next/link";
 
 const page = () => {
   return (
     <div className="">
       {/* header */}
-      <div className="flex flex-row justify-end mt-3 min-h-16 items-center border-b border-b-[#C7C6CA]">
-        <p>اطلاعات کاربری</p>
-        <ArrowBack />
+      <div className="flex flex-row justify-end mt-3 min-h-16 items-center border-b border-b-[#C7C6CA] px-5 gap-[10px]">
+        <p className="text-base font-medium text-[#49454F]">اطلاعات کاربری</p>
+        <Link href={"/userProfile"}>
+          <ArrowBack />
+        </Link>
       </div>
       <div className="my-4">
         <UserHeader name="محمد رنجبر" phone="0992450090" />
@@ -21,6 +24,7 @@ const page = () => {
         <Input type="sex" sex="ترجیح می دهم نگویم" />
         <Input type="email" email="ranjbarmohad@gmail.com" />
       </div>
+      <div className="w-full h-[6px] bg-neutral-neutral90" />
     </div>
   );
 };

@@ -321,6 +321,12 @@ const Input = ({
     return validPrefixes.some((prefix) => phoneNumber.startsWith(prefix));
   };
 
+  const isValidEmail = (email: string) => {
+    const emailRegex =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    return emailRegex.test(email);
+  };
+
   const handleChange = (e: { target: { value: string } }) => {
     const value = e.target.value;
     if (type === "phone") {
@@ -339,6 +345,13 @@ const Input = ({
       setEditableName(value);
     } else if (type === "email" && isEmailEditable) {
       setEditableEmail(value);
+
+      // Stricter email validation regex
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const isEmailValid = emailRegex.test(value);
+
+      setIsValid(isEmailValid);
+      setShowError(!isEmailValid);
     }
   };
 
@@ -383,7 +396,7 @@ const Input = ({
         )}
         {type === "email" && (
           <PenIcon
-            className="absolute top-1/3 left-8 cursor-pointer"
+            className="absolute top-[16px] left-8 cursor-pointer"
             onClick={handlePenClick}
           />
         )}
@@ -489,9 +502,15 @@ const Input = ({
                   ? "نام و نام خانوادگی"
                   : "example@gmail.com"
             }
-            disabled={type === "name" ? !isNameEditable: !isEmailEditable}
+            disabled={
+              type === "name"
+                ? !isNameEditable
+                : type === "email"
+                  ? !isEmailEditable
+                  : false
+            }
             className={`h-12 mx-4 w-[398px] border-[1.5px] ${
-              type === "phone" && !isValid
+              (type === "phone" && !isValid) || (showError && type === "email")
                 ? "border-red-500"
                 : "border-[#C7C6CA]"
             } rounded-rounded-7 bg-[#FBF8FD] pr-5 pl-14 outline-none text-xs text-neutral-neutral30`}
@@ -504,6 +523,14 @@ const Input = ({
           style={{ direction: "rtl" }}
         >
           شماره تلفن معتبر نیست!
+        </p>
+      )}
+      {showError && type === "email" && (
+        <p
+          className="text-red-500 text-xs mt-[10px] pr-4"
+          style={{ direction: "rtl" }}
+        >
+          ایمیل معتبر نیست!
         </p>
       )}
     </div>
