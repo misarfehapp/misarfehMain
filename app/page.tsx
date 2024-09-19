@@ -20,97 +20,101 @@ import CurrentLocation from "@/components/map tools/CurrentLocation";
 import BalanceCard from "@/components/balance indicator/BalanceCard";
 import TransactionCard from "@/components/transaction Card/TransactionCard";
 import CheckBox from "@/components/check box/CheckBox";
+import Link from "next/link";
 export default function Home() {
   return (
-    <div className="mx-4 flex flex-col space-y-28 my-4 justify-center items-center">
-      <div className="flex flex-row justify-around items-center gap-10 ">
-        <Input />
-        <OTPInput />
-        <Segment sensitivity={false} />
-        <Segment sensitivity={true} />
-      </div>
-      <div className="flex flex-row justify-around items-center gap-10">
-        <Button />
-        <OptionBar />
-        <RangeSlider
-          initialMin={2500}
-          initialMax={7500}
-          min={0}
-          max={10000}
-          step={100}
-          priceCap={1000}
-        />
-      </div>
-      <div className="flex flex-row justify-around items-center gap-10">
-        <ProductTracker
-          title="سورپرایز صبحانه"
-          address="فست فود لاویا - بلوار بهشتی , 5.6 کیلومتر"
-          count={2}
-          pickupEnd={13}
-          pickupStart={9}
-          timeH={4}
-          timeM={38}
-          timeS={46}
-          progress={70}
-        />
-        <ProductCard
-          title="صبحانه"
-          discount={10}
-          priceAfter={118_000}
-          priceBefore={128_000}
-          productImageSrc={ProductImageSrc}
-          restaurantImageSrc={RestaurantImageSrc}
-          descriptionTitle="سورپرایز صبحانه"
-          description="برداشت امروز:"
-          startPickUp="20:00"
-          endPickUp="20:30"
-          distance={5.6}
-        />
-        <Comments
-          firstName="الینا"
-          lastName="ریاضی"
-          comment="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطر آن چنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می‌باشد."
-          joinTime="23 تیر"
-          satisfaction={2}
-        />
-      </div>
-      <div className="flex flex-row justify-around items-center gap-10">
-        <DrawerComponent />
-        <SuccessPopUp trackingCode={98276} />
-        <Stepper currentStep={2} progress={60} />
-      </div>
-      <div className="flex flex-row justify-around items-center gap-10">
-        <div className="flex flex-col justify-center items-center gap-5">
-          <LocationIndicator />
-          <PlaceIndicator />
-          <PlaceAmount amount={30} />
-          <CurrentLocation />
-        </div>
-        <BalanceCard balance={200_000} />
-        <div className="flex flex-col gap-5">
-          <TransactionCard
-            type="increase"
-            day={1}
-            month={2}
-            year={1403}
-            mount={200_000}
-          />
-          <TransactionCard
-            type="decrease"
-            day={1}
-            month={2}
-            year={1403}
-            mount={200_000}
-          />
-        </div>
-      </div>
-      <div className="flex flex-row justify-around items-center gap-10">
-        <div className="flex flex-col gap-5">
-          <CheckBox />
-          <CheckBox />
-        </div>
-        <CategoryButton category="رستوران" />
-      </div>
+    <div>
+      <Link href={'/userProfile'}>userProfile</Link>
     </div>
+    // <div className="mx-4 flex flex-col space-y-28 my-4 justify-center items-center">
+    //   <div className="flex flex-row justify-around items-center gap-10 ">
+    //     <Input />
+    //     <OTPInput />
+    //     <Segment sensitivity={false} />
+    //     <Segment sensitivity={true} />
+    //   </div>
+    //   <div className="flex flex-row justify-around items-center gap-10">
+    //     <Button />
+    //     <OptionBar />
+    //     <RangeSlider
+    //       initialMin={2500}
+    //       initialMax={7500}
+    //       min={0}
+    //       max={10000}
+    //       step={100}
+    //       priceCap={1000}
+    //     />
+    //   </div>
+    //   <div className="flex flex-row justify-around items-center gap-10">
+    //     <ProductTracker
+    //       title="سورپرایز صبحانه"
+    //       address="فست فود لاویا - بلوار بهشتی , 5.6 کیلومتر"
+    //       count={2}
+    //       pickupEnd={13}
+    //       pickupStart={9}
+    //       timeH={4}
+    //       timeM={38}
+    //       timeS={46}
+    //       progress={70}
+    //     />
+    //     <ProductCard
+    //       title="صبحانه"
+    //       discount={10}
+    //       priceAfter={118_000}
+    //       priceBefore={128_000}
+    //       productImageSrc={ProductImageSrc}
+    //       restaurantImageSrc={RestaurantImageSrc}
+    //       descriptionTitle="سورپرایز صبحانه"
+    //       description="برداشت امروز:"
+    //       startPickUp="20:00"
+    //       endPickUp="20:30"
+    //       distance={5.6}
+    //     />
+    //     <Comments
+    //       firstName="الینا"
+    //       lastName="ریاضی"
+    //       comment="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطر آن چنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می‌باشد."
+    //       joinTime="23 تیر"
+    //       satisfaction={2}
+    //     />
+    //   </div>
+    //   <div className="flex flex-row justify-around items-center gap-10">
+    //     <DrawerComponent />
+    //     <SuccessPopUp trackingCode={98276} />
+    //     <Stepper currentStep={2} progress={60} />
+    //   </div>
+    //   <div className="flex flex-row justify-around items-center gap-10">
+    //     <div className="flex flex-col justify-center items-center gap-5">
+    //       <LocationIndicator />
+    //       <PlaceIndicator />
+    //       <PlaceAmount amount={30} />
+    //       <CurrentLocation />
+    //     </div>
+    //     <BalanceCard balance={200_000} />
+    //     <div className="flex flex-col gap-5">
+    //       <TransactionCard
+    //         type="increase"
+    //         day={1}
+    //         month={2}
+    //         year={1403}
+    //         mount={200_000}
+    //       />
+    //       <TransactionCard
+    //         type="decrease"
+    //         day={1}
+    //         month={2}
+    //         year={1403}
+    //         mount={200_000}
+    //       />
+    //     </div>
+    //   </div>
+    //   <div className="flex flex-row justify-around items-center gap-10">
+    //     <div className="flex flex-col gap-5">
+    //       <CheckBox />
+    //       <CheckBox />
+    //     </div>
+    //     <CategoryButton category="رستوران" />
+    //   </div>
+    // </div>
   );
 }
