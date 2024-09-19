@@ -502,13 +502,13 @@ const Input = ({
                   ? "نام و نام خانوادگی"
                   : "example@gmail.com"
             }
-            disabled={
-              type === "name"
-                ? !isNameEditable
-                : type === "email"
-                  ? !isEmailEditable
-                  : false
-            }
+            // disabled={
+            //   type === "name"
+            //     ? !isNameEditable
+            //     : type === "email"
+            //       ? !isEmailEditable
+            //       : false
+            // }
             className={`h-12 mx-4 w-[398px] border-[1.5px] ${
               (type === "phone" && !isValid) || (showError && type === "email")
                 ? "border-red-500"
