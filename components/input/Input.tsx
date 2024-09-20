@@ -405,7 +405,7 @@ const Input = ({
       <div className="flex justify-center">
         <label
           htmlFor="input"
-          className={`absolute right-7 bg-gradient-to-t from-[#FBF8FD] to-white text-center text-neutral-neutral40 -top-2 px-1 font-normal text-2xs h-[14px] ${type === "phone" && "w-14"} ${type === "name" && "w-24"}`}
+          className={`absolute right-7 z-10 bg-gradient-to-t from-[#FBF8FD] to-white text-center text-neutral-neutral40 -top-2 px-1 font-normal text-2xs h-[14px] ${type === "phone" && "w-14"} ${type === "name" && "w-24"}`}
         >
           {type === "phone" && "شماره تلفن"}
           {type === "name" && "نام و نام خانوادگی"}
