@@ -1,8 +1,9 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import InputIcon from "./InputIcon";
 import PenIcon from "./PenIcon";
-import ChevronDownIcon from "./ChevronDownIcon";
+import CheckIcon from "./CheckIcon";
+import CrossIcon from "./CrossIcon";
+
 import {
   Select,
   SelectContent,
@@ -297,10 +298,14 @@ const Input = ({
   email,
 }: InputProps) => {
   const [phoneNumber, setPhoneNumber] = useState<string>(phone || "");
-  const [isValid, setIsValid] = useState<boolean>(true);
+  const [savedPhoneNumber, setSavedPhoneNumber] = useState<string>(phone || ""); // Track the last saved number
+  const [savedEmail, setSavedEmail] = useState<string>(email || ""); // Track the last saved email
+  const [savedName, setSavedName] = useState<string>(name || ""); // Track the last saved email
   const [showError, setShowError] = useState(false);
   const [isNameEditable, setIsNameEditable] = useState<boolean>(false);
   const [isEmailEditable, setIsEmailEditable] = useState<boolean>(false);
+  const [isPhoneEditable, setIsPhoneEditable] = useState<boolean>(false); // New state for phone number editability
+  const [showEditIcons, setShowEditIcons] = useState<boolean>(false); // New state for edit icons
   const [editableName, setEditableName] = useState<string>(name || "");
   const [editableEmail, setEditableEmail] = useState<string>(email || "");
   const [selectedProvince, setSelectedProvince] = useState<string>(
@@ -310,66 +315,87 @@ const Input = ({
   const [selectedSex, setSelectedSex] = useState<string>(sex || "");
   const inputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    if (type === "phone") {
-      setPhoneNumber(phone || "");
-    }
-  }, [phone, type]);
+  // useEffect(() => {
+  //   if (type === "phone") {
+  //     setPhoneNumber(phone || "");
+  //     setSavedPhoneNumber(phone || ""); // Initialize saved phone number
+  //   }
+  // }, [phone, type]);
 
   const isValidPhoneNumber = (phoneNumber: string) => {
     if (phoneNumber.length !== 11) return false;
     return validPrefixes.some((prefix) => phoneNumber.startsWith(prefix));
   };
 
-  const isValidEmail = (email: string) => {
-    const emailRegex =
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    return emailRegex.test(email);
-  };
-
   const handleChange = (e: { target: { value: string } }) => {
     const value = e.target.value;
-    if (type === "phone") {
+    if (type === "phone" && isPhoneEditable) {
       if (value.length <= 11) {
         setPhoneNumber(value);
-        if (value.length === 11) {
-          const valid = isValidPhoneNumber(value);
-          setIsValid(valid);
-          setShowError(!valid);
-        } else {
-          setIsValid(true);
-          setShowError(false);
-        }
       }
     } else if (type === "name" && isNameEditable) {
       setEditableName(value);
     } else if (type === "email" && isEmailEditable) {
       setEditableEmail(value);
-
-      // Stricter email validation regex
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      const isEmailValid = emailRegex.test(value);
-
-      setIsValid(isEmailValid);
-      setShowError(!isEmailValid);
     }
   };
 
   const handlePenClick = () => {
+    setShowEditIcons(true); // Show check and cross icons
     type === "name" && setIsNameEditable(true);
     type === "email" && setIsEmailEditable(true);
+    type === "phone" && setIsPhoneEditable(true);
     setTimeout(() => {
       inputRef.current?.focus();
       inputRef.current?.select();
     }, 0);
   };
+  const handleSaveClick = () => {
+    if (type === "phone") {
+      if (isValidPhoneNumber(phoneNumber)) {
+        setSavedPhoneNumber(phoneNumber); // Save the valid phone number
+        setIsPhoneEditable(false);
+        setShowEditIcons(false);
+        setShowError(false);
+      } else {
+        setShowError(true);
+        return; // Prevent saving if the phone number is invalid
+      }
+    } else if (type === "email") {
+      // Email validation with a stricter regex
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (emailRegex.test(editableEmail)) {
+        setSavedEmail(editableEmail);
+        setIsEmailEditable(false);
+        setShowEditIcons(false);
+        setShowError(false);
+      } else {
+        setShowError(true);
+        return; // Prevent saving if the email is invalid
+      }
+    } else {
+      setSavedName(editableName);
+      setIsNameEditable(false);
+      setShowEditIcons(false);
+    }
+  };
+
+  const handleCancelClick = () => {
+    setIsNameEditable(false);
+    setIsEmailEditable(false);
+    setIsPhoneEditable(false);
+    setShowEditIcons(false); // Hide check and cross icons
+    if (type === "name") setEditableName(savedName);
+    if (type === "email") setEditableEmail(savedEmail);
+    if (type === "phone") setPhoneNumber(savedPhoneNumber); // Revert to the saved number
+    setShowError(false);
+  };
+
   const handleProvinceChange = (province: string) => {
     setSelectedProvince(province);
     setSelectedCity(""); // Reset city when the province changes
   };
-  // const handleCityChange = (value: string) => {
-  //   setSelectedCity(value);
-  // };
+
   const handleSexChange = (value: string) => {
     setSelectedSex(value);
   };
@@ -388,17 +414,22 @@ const Input = ({
           {type === "sex" && "جنسیت"}
           {type === "email" && "ایمیل"}
         </label>
-        {type === "name" && (
+        {(type === "name" || type === "email" || type === "phone") &&
+        !showEditIcons ? (
           <PenIcon
-            className="absolute top-1/3 left-8 cursor-pointer z-20"
+            className="absolute top-[16px] left-8 cursor-pointer z-10"
             onClick={handlePenClick}
           />
-        )}
-        {type === "email" && (
-          <PenIcon
-            className="absolute top-[16px] left-8 cursor-pointer z-20"
-            onClick={handlePenClick}
-          />
+        ) : (
+          (type === "name" || type === "email" || type === "phone") && (
+            <div className="absolute top-[16px] left-8 z-20 flex space-x-2">
+              <CheckIcon className="cursor-pointer" onClick={handleSaveClick} />
+              <CrossIcon
+                className="cursor-pointer"
+                onClick={handleCancelClick}
+              />
+            </div>
+          )
         )}
         {type === "sex" && (
           <div className="mx-4 gap-4 flex flex-col w-[398px] justify-center items-center">
@@ -507,10 +538,12 @@ const Input = ({
                 ? !isNameEditable
                 : type === "email"
                   ? !isEmailEditable
-                  : false
+                  : type === "phone"
+                    ? !isPhoneEditable
+                    : false
             }
             className={`h-12 mx-4 w-[398px] border-[1.5px] ${
-              (type === "phone" && !isValid) || (showError && type === "email")
+              (type === "phone" && showError) || (showError && type === "email")
                 ? "border-red-500"
                 : "border-[#C7C6CA]"
             } rounded-rounded-7 bg-[#FBF8FD] pr-5 pl-14 outline-none text-xs text-neutral-neutral30`}
