@@ -364,7 +364,7 @@ const Input = ({
     } else if (type === "email") {
       // Email validation with a stricter regex
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (emailRegex.test(editableEmail)) {
+      if (emailRegex.test(editableEmail) || editableEmail === "") {
         setSavedEmail(editableEmail);
         setIsEmailEditable(false);
         setShowEditIcons(false);
