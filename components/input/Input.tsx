@@ -390,13 +390,13 @@ const Input = ({
         </label>
         {type === "name" && (
           <PenIcon
-            className="absolute top-1/3 left-8 cursor-pointer"
+            className="absolute top-1/3 left-8 cursor-pointer z-20"
             onClick={handlePenClick}
           />
         )}
         {type === "email" && (
           <PenIcon
-            className="absolute top-[16px] left-8 cursor-pointer"
+            className="absolute top-[16px] left-8 cursor-pointer z-20"
             onClick={handlePenClick}
           />
         )}
