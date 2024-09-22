@@ -2,6 +2,7 @@ import type { Config } from "tailwindcss";
 import defaultTheme from "tailwindcss/defaultTheme";
 
 const config: Config = {
+  darkMode: ["class"],
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -30,7 +31,10 @@ const config: Config = {
         "2xl": "40px",
       },
       colors: {
-        "material-theme": { white: "#ffffff", black: "#000000" },
+        "material-theme": {
+          white: "#ffffff",
+          black: "#000000",
+        },
         light: {
           primary: "#004a00",
           "surface-tint": "#176d10",
@@ -457,8 +461,13 @@ const config: Config = {
           "neutral-variant5": "#0d120b",
           "neutral-variant0": "#000000",
         },
-        "key-colors": { primary: "#006000", neutral: "#646464" },
-        source: { seed: "#006000" },
+        "key-colors": {
+          primary: "#006000",
+          neutral: "#646464",
+        },
+        source: {
+          seed: "#006000",
+        },
       },
       fontSize: {
         "2xs": "0.625rem",
@@ -469,7 +478,9 @@ const config: Config = {
         xl: "1.25rem",
         "2xl": "1.5rem",
       },
-      fontFamily: { danafanum: "DanaFaNum" },
+      fontFamily: {
+        danafanum: "DanaFaNum",
+      },
       boxShadow: {
         "Drop Shadow/100": "0px 1px 4px 0px rgba(12,12,13,0.05)",
         "Drop Shadow/200":
@@ -507,9 +518,12 @@ const config: Config = {
         "rounded-12": "2.5rem",
         "rounded-13": "3.125rem",
         "rounded-14": "62.4375rem",
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };
 export default config;
