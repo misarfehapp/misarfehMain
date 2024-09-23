@@ -1,5 +1,7 @@
 import AddressSection from "@/components/address section/AddressSection";
+import ExitSection from "@/components/exit section/ExitSection";
 import FoodSensitivities from "@/components/food sensitivities/FoodSensitivities";
+import ExitIcon from "@/components/icons/ExitIcon";
 import Input from "@/components/input/Input";
 import ArrowBack from "@/components/user header/ArrowBack";
 import UserHeader from "@/components/user header/UserHeader";
@@ -38,8 +40,9 @@ const page = () => {
       </div>
       <div className="w-full h-[6px] bg-neutral-neutral90" />
       <div className="my-6 flex flex-col">
-        <Input type="diet" diet="(Vegetarian) رژیم لاغری وجترین"/>
+        <Input type="diet" diet="(Vegetarian) رژیم لاغری وجترین" />
       </div>
+      <ExitSection />
     </div>
   );
 };
