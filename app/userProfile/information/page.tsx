@@ -36,6 +36,7 @@ const page = () => {
       <div className="my-6 mx-4 flex justify-center">
         <FoodSensitivities />
       </div>
+      <div className="w-full h-[6px] bg-neutral-neutral90" />
     </div>
   );
 };
