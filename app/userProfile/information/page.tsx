@@ -1,4 +1,5 @@
 import AddressSection from "@/components/address section/AddressSection";
+import FoodSensitivities from "@/components/food sensitivities/FoodSensitivities";
 import Input from "@/components/input/Input";
 import ArrowBack from "@/components/user header/ArrowBack";
 import UserHeader from "@/components/user header/UserHeader";
@@ -27,12 +28,14 @@ const page = () => {
       </div>
       <div className="w-full h-[6px] bg-neutral-neutral90" />
       <div className="my-6 mx-4 flex flex-col gap-4">
-    
         <div className="flex justify-center">
           <AddressSection />
         </div>
       </div>
       <div className="w-full h-[6px] bg-neutral-neutral90" />
+      <div className="my-6 mx-4 flex justify-center">
+        <FoodSensitivities />
+      </div>
     </div>
   );
 };
