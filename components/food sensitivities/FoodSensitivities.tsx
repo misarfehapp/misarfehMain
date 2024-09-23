@@ -85,7 +85,7 @@ const FoodSensitivities = () => {
 
           {/* Dropdown Menu */}
           {dropdownOpen && (
-            <div className="absolute left-0 w-full mt-1 bg-white border rounded-lg shadow-lg z-10">
+            <div className="absolute left-0 w-full mt-1 bg-white border rounded-lg shadow-lg z-20">
               {/* Filtered Items */}
               <ul>
                 {filteredItems.map((item) => (

@@ -37,6 +37,9 @@ const page = () => {
         <FoodSensitivities />
       </div>
       <div className="w-full h-[6px] bg-neutral-neutral90" />
+      <div className="my-6 flex flex-col">
+        <Input type="diet" diet="(Vegetarian) رژیم لاغری وجترین"/>
+      </div>
     </div>
   );
 };

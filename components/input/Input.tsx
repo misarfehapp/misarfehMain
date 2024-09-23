@@ -119,14 +119,23 @@ const provincesOfIran = [
   "همدان",
 ];
 const sexes = ["مرد", "زن", "ترجیح می دهم نگویم"];
+const diets = [
+  "(vegan) رژیم لاغری وگان",
+  "رژیم ورزشی",
+  "(Vegetarian) رژیم لاغری وجترین",
+];
 interface InputProps {
-  type: "province" | "city" | "name" | "phone" | "sex" | "email";
+  type: "province" | "city" | "name" | "phone" | "sex" | "email" | "diet";
   name?: string;
   phone?: string;
   province?: string;
   city?: string;
   sex?: "مرد" | "زن" | "ترجیح می دهم نگویم";
   email?: string;
+  diet?:
+    | "(vegan) رژیم لاغری وگان"
+    | "رژیم ورزشی"
+    | "(Vegetarian) رژیم لاغری وجترین";
 }
 const citiesByProvince: Record<string, string[]> = {
   تهران: [
@@ -296,6 +305,7 @@ const Input = ({
   city,
   sex,
   email,
+  diet
 }: InputProps) => {
   const [phoneNumber, setPhoneNumber] = useState<string>(phone || "");
   const [savedPhoneNumber, setSavedPhoneNumber] = useState<string>(phone || ""); // Track the last saved number
@@ -313,6 +323,8 @@ const Input = ({
   );
   const [selectedCity, setSelectedCity] = useState<string>(city || "");
   const [selectedSex, setSelectedSex] = useState<string>(sex || "");
+  const [selectedDiet, setSelectedDiet] = useState<string>(diet || "");
+
   const inputRef = useRef<HTMLInputElement>(null);
 
   // useEffect(() => {
@@ -399,7 +411,9 @@ const Input = ({
   const handleSexChange = (value: string) => {
     setSelectedSex(value);
   };
-
+  const handleDietChange = (value: string) => {
+    setSelectedDiet(value)
+  };
   return (
     <div className="relative min-h-[48px]">
       <div className="flex justify-center">
@@ -413,6 +427,7 @@ const Input = ({
           {type === "city" && "شهر سکونت"}
           {type === "sex" && "جنسیت"}
           {type === "email" && "ایمیل"}
+          {type === "diet" && "رژیم غذایی"}
         </label>
         {(type === "name" || type === "email" || type === "phone") &&
         !showEditIcons ? (
@@ -448,6 +463,29 @@ const Input = ({
                 {sexes.map((sexOption) => (
                   <SelectItem key={sexOption} value={sexOption}>
                     {sexOption}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        )}
+        {type === "diet" && (
+          <div className="mx-4 gap-4 flex flex-col w-[398px] justify-center items-center">
+            {/* Diet Select */}
+            <Select onValueChange={handleDietChange} value={selectedDiet}>
+              <SelectTrigger className="h-12 bg-[#FBF8FD] border-[1.5px] border-[#C7C6CA] rounded-rounded-7 pl-4 pr-5 text-xs text-neutral-neutral30">
+                {selectedDiet ? (
+                  <span>{selectedDiet}</span>
+                ) : (
+                  <span className="text-neutral-neutral30">
+                    رژیم غذایی خود را انتخاب کنید
+                  </span>
+                )}
+              </SelectTrigger>
+              <SelectContent>
+                {diets.map((dietOptions) => (
+                  <SelectItem key={dietOptions} value={dietOptions}>
+                    {dietOptions}
                   </SelectItem>
                 ))}
               </SelectContent>
