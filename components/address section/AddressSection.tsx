@@ -9,6 +9,7 @@ import TrashIcon from "./TrashIcon";
 import PlusIcon from "./PlusIcon";
 import CheckIcon from "../input/CheckIcon";
 import CrossIcon from "../input/CrossIcon";
+import LocationIcon from "./LocationIcon";
 
 const places = [
   {
@@ -32,6 +33,9 @@ const AddressSection = () => {
   const [isAddPopupVisible, setIsAddPopupVisible] = useState<boolean>(false);
   const [newAddress, setNewAddress] = useState<string>("");
   const [editingAddress, setEditingAddress] = useState<string>(""); // Temporary state for editing
+  const [selectedAddressType, setSelectedAddressType] =
+    useState<string>("home"); // Track selected address type
+  const [customAddressName, setCustomAddressName] = useState<string>("");
 
   useEffect(() => {
     if (addresses.length === 0) {
@@ -88,12 +92,23 @@ const AddressSection = () => {
   };
 
   const handleAddAddress = () => {
-    if (newAddress.trim()) {
+    let addressName =
+      selectedAddressType === "etc"
+        ? customAddressName
+        : selectedAddressType === "home"
+          ? "خانه"
+          : "محل کار";
+
+    if (
+      newAddress.trim() &&
+      (selectedAddressType !== "etc" || customAddressName.trim())
+    ) {
       setAddresses([
         ...addresses,
-        { name: "آدرس جدید", address: newAddress, icon: <HomeIcon /> },
+        { name: addressName, address: newAddress, icon: selectedAddressType === "home" ? <HomeIcon/> : selectedAddressType === "work" ? <WorkIcon/> : <LocationIcon/>},
       ]);
       setNewAddress("");
+      setCustomAddressName(""); // Reset custom name field
       setIsAddPopupVisible(false);
     }
   };
@@ -125,25 +140,69 @@ const AddressSection = () => {
           </button>
           {isAddPopupVisible && (
             <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-20">
-              <div className="bg-white p-4 rounded-lg shadow-lg">
+              <div className="bg-white p-4 rounded-lg shadow-lg max-w-[70%]">
                 <p className="mb-4 text-center" style={{ direction: "rtl" }}>
-                  آدرس جدید را وارد کنید:
+                  انتخاب نوع آدرس:
                 </p>
+
+                {/* Radio buttons to select address type */}
+                <div className="flex justify-around mb-4 gap-2" style={{direction:"rtl"}}>
+                  <label className="flex items-center flex-row gap-2">
+                    <input
+                      type="radio"
+                      value="home"
+                      checked={selectedAddressType === "home"}
+                      onChange={() => setSelectedAddressType("home")}
+                    />
+                    <span className="ml-2">خانه</span>
+                  </label>
+                  <label className="flex items-center flex-row gap-2">
+                    <input
+                      type="radio"
+                      value="work"
+                      checked={selectedAddressType === "work"}
+                      onChange={() => setSelectedAddressType("work")}
+                    />
+                    <span className="ml-2">محل کار</span>
+                  </label>
+                  <label className="flex items-center flex-row gap-2">
+                    <input
+                      type="radio"
+                      value="etc"
+                      checked={selectedAddressType === "etc"}
+                      onChange={() => setSelectedAddressType("etc")}
+                    />
+                    <span className="ml-2">سایر</span>
+                  </label>
+                </div>
+
+                {/* Input for custom address name if "etc" is selected */}
+                {selectedAddressType === "etc" && (
+                  <input
+                    type="text"
+                    value={customAddressName}
+                    onChange={(e) => setCustomAddressName(e.target.value)}
+                    placeholder="نام آدرس را وارد کنید"
+                    className="ring-1 ring-gray-300 focus:outline-none focus:ring-light-primary p-2 rounded-lg w-full mb-4"
+                    style={{ direction: "rtl" }}
+                  />
+                )}
+
                 <textarea
                   value={newAddress}
                   onChange={(e) => setNewAddress(e.target.value)}
-                  className="ring-1 ring-gray-300 focus:outline-none focus:ring-light-primary p-2 rounded-lg w-full mb-4 resize-none overflow-hidden text-base"
+                  className="ring-1 ring-gray-300 focus:outline-none focus:ring-light-primary p-2 rounded-lg w-full mb-4 text-base resize-none overflow-hidden"
                   style={{
                     direction: "rtl",
                     minHeight: "40px",
                     height: "auto",
                   }}
                   placeholder="آدرس جدید"
-                  rows={1} // Set the initial number of rows
+                  rows={1}
                   onInput={(e) => {
                     const target = e.target as HTMLTextAreaElement;
-                    target.style.height = "auto"; // Reset height for recalculation
-                    target.style.height = `${target.scrollHeight}px`; // Set height based on scrollHeight
+                    target.style.height = "auto";
+                    target.style.height = `${target.scrollHeight}px`;
                   }}
                 />
 
@@ -278,10 +337,57 @@ const AddressSection = () => {
           {/* Add address popup */}
           {isAddPopupVisible && (
             <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-20">
-              <div className="bg-white p-4 rounded-lg shadow-lg">
+              <div className="bg-white p-4 rounded-lg shadow-lg max-w-[70%]">
                 <p className="mb-4 text-center" style={{ direction: "rtl" }}>
-                  آدرس جدید را وارد کنید:
+                  انتخاب نوع آدرس:
                 </p>
+
+                {/* Radio buttons to select address type */}
+                <div
+                  className="flex justify-around mb-4 flex-row gap-2"
+                  style={{ direction: "rtl" }}
+                >
+                  <label className="flex items-center flex-row gap-2">
+                    <input
+                      type="radio"
+                      value="home"
+                      checked={selectedAddressType === "home"}
+                      onChange={() => setSelectedAddressType("home")}
+                    />
+                    <span className="ml-2">خانه</span>
+                  </label>
+                  <label className="flex items-center flex-row gap-2">
+                    <input
+                      type="radio"
+                      value="work"
+                      checked={selectedAddressType === "work"}
+                      onChange={() => setSelectedAddressType("work")}
+                    />
+                    <span className="ml-2">محل کار</span>
+                  </label>
+                  <label className="flex items-center flex-row gap-2">
+                    <input
+                      type="radio"
+                      value="etc"
+                      checked={selectedAddressType === "etc"}
+                      onChange={() => setSelectedAddressType("etc")}
+                    />
+                    <span className="ml-2">سایر</span>
+                  </label>
+                </div>
+
+                {/* Input for custom address name if "etc" is selected */}
+                {selectedAddressType === "etc" && (
+                  <input
+                    type="text"
+                    value={customAddressName}
+                    onChange={(e) => setCustomAddressName(e.target.value)}
+                    placeholder="نام آدرس را وارد کنید"
+                    className="ring-1 ring-gray-300 focus:outline-none focus:ring-light-primary p-2 rounded-lg w-full mb-4"
+                    style={{ direction: "rtl" }}
+                  />
+                )}
+
                 <textarea
                   value={newAddress}
                   onChange={(e) => setNewAddress(e.target.value)}
@@ -292,11 +398,11 @@ const AddressSection = () => {
                     height: "auto",
                   }}
                   placeholder="آدرس جدید"
-                  rows={1} // Set the initial number of rows
+                  rows={1}
                   onInput={(e) => {
                     const target = e.target as HTMLTextAreaElement;
-                    target.style.height = "auto"; // Reset height for recalculation
-                    target.style.height = `${target.scrollHeight}px`; // Set height based on scrollHeight
+                    target.style.height = "auto";
+                    target.style.height = `${target.scrollHeight}px`;
                   }}
                 />
 
