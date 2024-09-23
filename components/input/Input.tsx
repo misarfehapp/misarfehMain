@@ -546,7 +546,7 @@ const Input = ({
               (type === "phone" && showError) || (showError && type === "email")
                 ? "border-red-500"
                 : "border-[#C7C6CA]"
-            } rounded-rounded-7 bg-[#FBF8FD] pr-5 pl-14 outline-none text-xs text-neutral-neutral30`}
+            } rounded-rounded-7 bg-[#FBF8FD] pr-5 pl-14 outline-none text-base text-neutral-neutral30`}
           />
         )}
       </div>

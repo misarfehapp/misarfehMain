@@ -31,6 +31,7 @@ const AddressSection = () => {
   const [deletingIndex, setDeletingIndex] = useState<number | null>(null);
   const [isAddPopupVisible, setIsAddPopupVisible] = useState<boolean>(false);
   const [newAddress, setNewAddress] = useState<string>("");
+  const [editingAddress, setEditingAddress] = useState<string>(""); // Temporary state for editing
 
   useEffect(() => {
     if (addresses.length === 0) {
@@ -42,22 +43,26 @@ const AddressSection = () => {
 
   const handleEditClick = (index: number) => {
     setEditingIndex(index);
+    setEditingAddress(addresses[index].address); // Initialize temp state with the current address
   };
   const handleCancelEdit = () => {
     setEditingIndex(null);
+    setEditingAddress(""); // Clear temp state on cancel
   };
   const handleAddressChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
-    const updatedAddresses = addresses.map((place, i) =>
-      i === index ? { ...place, address: e.target.value } : place
-    );
-    setAddresses(updatedAddresses);
+    setEditingAddress(e.target.value); // Update only the temp state
   };
 
   const handleSaveClick = () => {
+    const updatedAddresses = addresses.map((place, i) =>
+      i === editingIndex ? { ...place, address: editingAddress } : place
+    );
+    setAddresses(updatedAddresses); // Save changes to the main state
     setEditingIndex(null); // Exit editing mode
+    setEditingAddress(""); // Clear the temp state
   };
 
   const handleExpandClick = (index: number) => {
@@ -127,7 +132,7 @@ const AddressSection = () => {
                 <textarea
                   value={newAddress}
                   onChange={(e) => setNewAddress(e.target.value)}
-                  className="ring-1 ring-gray-300 focus:outline-none focus:ring-light-primary p-2 rounded-lg w-full mb-4 text-2xs resize-none overflow-hidden"
+                  className="ring-1 ring-gray-300 focus:outline-none focus:ring-light-primary p-2 rounded-lg w-full mb-4 resize-none overflow-hidden text-base"
                   style={{
                     direction: "rtl",
                     minHeight: "40px",
@@ -188,10 +193,10 @@ const AddressSection = () => {
                 <>
                   {editingIndex === index ? (
                     <input
-                      value={place.address}
-                      onChange={(e) => handleAddressChange(e, index)}
+                      value={editingAddress}
+                      onChange={(e) => handleAddressChange(e, index)} // Pass the event and the index
                       onClick={(e) => e.stopPropagation()} // Prevent card from collapsing
-                      className="text-sm mt-4 p-1 ring-1 ring-neutral-neutral90 rounded w-full focus:outline-none focus:ring-light-primary"
+                      className="text-base mt-4 p-1 ring-1 ring-neutral-neutral90 rounded w-full focus:outline-none focus:ring-light-primary"
                       style={{ direction: "rtl" }}
                     />
                   ) : (
@@ -247,7 +252,7 @@ const AddressSection = () => {
 
           {/* Delete confirmation popup */}
           {deletingIndex !== null && (
-            <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+            <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-20">
               <div className="bg-white p-4 rounded-lg shadow-lg">
                 <p className="mb-4 text-center">
                   مطمئنی میخوای آدرستو پاک کنی؟
@@ -280,7 +285,7 @@ const AddressSection = () => {
                 <textarea
                   value={newAddress}
                   onChange={(e) => setNewAddress(e.target.value)}
-                  className="ring-1 ring-gray-300 focus:outline-none focus:ring-light-primary p-2 rounded-lg w-full mb-4 text-2xs resize-none overflow-hidden"
+                  className="ring-1 ring-gray-300 focus:outline-none focus:ring-light-primary p-2 rounded-lg w-full mb-4 text-base resize-none overflow-hidden"
                   style={{
                     direction: "rtl",
                     minHeight: "40px",
