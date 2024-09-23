@@ -1,3 +1,7 @@
+import AddressSection from "@/components/address section/AddressSection";
+import ExitSection from "@/components/exit section/ExitSection";
+import FoodSensitivities from "@/components/food sensitivities/FoodSensitivities";
+import ExitIcon from "@/components/icons/ExitIcon";
 import Input from "@/components/input/Input";
 import ArrowBack from "@/components/user header/ArrowBack";
 import UserHeader from "@/components/user header/UserHeader";
@@ -25,6 +29,20 @@ const page = () => {
         <Input type="email" email="ranjbarmohad@gmail.com" />
       </div>
       <div className="w-full h-[6px] bg-neutral-neutral90" />
+      <div className="my-6 mx-4 flex flex-col gap-4">
+        <div className="flex justify-center">
+          <AddressSection />
+        </div>
+      </div>
+      <div className="w-full h-[6px] bg-neutral-neutral90" />
+      <div className="my-6 mx-4 flex justify-center">
+        <FoodSensitivities />
+      </div>
+      <div className="w-full h-[6px] bg-neutral-neutral90" />
+      <div className="my-6 flex flex-col">
+        <Input type="diet" diet="(Vegetarian) رژیم لاغری وجترین" />
+      </div>
+      <ExitSection />
     </div>
   );
 };
