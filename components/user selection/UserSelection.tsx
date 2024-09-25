@@ -22,7 +22,7 @@ const UserSelection = () => {
         >
           <ChevronLeftIcon className="mx-3" />
           <div className="flex flex-row gap-3 justify-center items-center mx-3">
-            <p className="text-sm text-neutral-neutral30">{section.name}</p>
+            <p className="text-sm text-neutral-neutral30 font-bold">{section.name}</p>
             <div>{section.icon}</div>
           </div>
         </Link>

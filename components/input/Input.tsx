@@ -450,7 +450,7 @@ const Input = ({
           <div className="mx-4 gap-4 flex flex-col w-[398px] justify-center items-center">
             {/* Sex Select */}
             <Select onValueChange={handleSexChange} value={selectedSex}>
-              <SelectTrigger className="h-12 bg-[#FBF8FD] border-[1.5px] border-[#C7C6CA] rounded-rounded-7 pl-4 pr-5 text-xs text-neutral-neutral30">
+              <SelectTrigger className="h-12 bg-[#FBF8FD] border-[1.5px] border-[#C7C6CA] rounded-rounded-7 pl-4 pr-5 text-xs text-neutral-neutral30 font-medium">
                 {selectedSex ? (
                   <span>{selectedSex}</span>
                 ) : (
@@ -473,7 +473,7 @@ const Input = ({
           <div className="mx-4 gap-4 flex flex-col w-[398px] justify-center items-center">
             {/* Diet Select */}
             <Select onValueChange={handleDietChange} value={selectedDiet}>
-              <SelectTrigger className="h-12 bg-[#FBF8FD] border-[1.5px] border-[#C7C6CA] rounded-rounded-7 pl-4 pr-5 text-xs text-neutral-neutral30">
+              <SelectTrigger className="h-12 bg-[#FBF8FD] border-[1.5px] border-[#C7C6CA] rounded-rounded-7 pl-4 pr-5 text-xs text-neutral-neutral30 font-normal">
                 {selectedDiet ? (
                   <span>{selectedDiet}</span>
                 ) : (
@@ -499,7 +499,7 @@ const Input = ({
               onValueChange={handleProvinceChange}
               value={selectedProvince}
             >
-              <SelectTrigger className="h-12   bg-[#FBF8FD] border-[1.5px] border-[#C7C6CA] rounded-rounded-7 pl-4 pr-5 text-xs text-neutral-neutral30">
+              <SelectTrigger className="h-12   bg-[#FBF8FD] border-[1.5px] border-[#C7C6CA] rounded-rounded-7 pl-4 pr-5 text-xs text-neutral-neutral30 font-medium">
                 {selectedProvince ? (
                   <span>{selectedProvince}</span>
                 ) : (
@@ -527,7 +527,7 @@ const Input = ({
                   شهر سکونت
                 </label>
                 <Select onValueChange={setSelectedCity} value={selectedCity}>
-                  <SelectTrigger className="h-12 bg-[#FBF8FD] border-[1.5px] border-[#C7C6CA] rounded-rounded-7 pl-4 pr-5 text-xs text-neutral-neutral30">
+                  <SelectTrigger className="h-12 bg-[#FBF8FD] border-[1.5px] border-[#C7C6CA] rounded-rounded-7 pl-4 pr-5 text-xs text-neutral-neutral30 font-medium">
                     {selectedCity ? (
                       <span>{selectedCity}</span>
                     ) : (
@@ -584,7 +584,7 @@ const Input = ({
               (type === "phone" && showError) || (showError && type === "email")
                 ? "border-red-500"
                 : "border-[#C7C6CA]"
-            } rounded-rounded-7 bg-[#FBF8FD] pr-5 pl-14 outline-none text-base text-neutral-neutral30`}
+            } rounded-rounded-7 bg-[#FBF8FD] pr-5 pl-14 outline-none text-base font-normal text-neutral-neutral30`}
           />
         )}
       </div>

@@ -31,7 +31,7 @@ const ExitSection = () => {
         onClick={handleExitClick}
       >
         <ExitIcon />
-        <p className="text-light-error text-sm">خروج از حساب کاربری</p>
+        <p className="text-light-error text-sm font-bold">خروج از حساب کاربری</p>
       </div>
       {showExitConfirm && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-10">
