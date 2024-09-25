@@ -1,3 +1,4 @@
+import SupportBody from "@/components/support body/SupportBody";
 import SupportHeader from "@/components/support header/SupportHeader";
 import ArrowBack from "@/components/user header/ArrowBack";
 import Link from "next/link";
@@ -13,7 +14,10 @@ const SupportPage = () => {
         </Link>
       </div>
       <div>
-        <SupportHeader/>
+        <SupportHeader />
+        <div className="flex items-center justify-center my-6">
+          <SupportBody />
+        </div>
       </div>
     </div>
   );
