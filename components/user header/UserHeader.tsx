@@ -10,7 +10,7 @@ const UserHeader = ({ name, phone }: UserHeaderProps) => {
     <div className="flex flex-row justify-end items-center gap-3 mx-4">
       <div className="flex flex-col justify-center items-center">
         <p className="text-sm font-bold text-neutral-neutral30">{name}</p>
-        <p className="text-xs text-neutral-neutral30">{phone}</p>
+        <p className="text-xs text-neutral-neutral30 font-medium">{phone}</p>
       </div>
       <Image
         src={userImage}

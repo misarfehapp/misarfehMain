@@ -1,12 +1,18 @@
 import Link from "next/link";
 import ChevronLeftIcon from "./ChevronLeftIcon";
 import UserIcon from "./UserIcon";
+import LocationIcon from "../address section/LocationIcon";
 
 const sections = [
   {
     name: "اطلاعات کاربری",
     icon: <UserIcon />,
     href:'information'
+  },
+  {
+    name: "آدرس های شما",
+    icon: <LocationIcon />,
+    href:'addresses'
   },
 ];
 
