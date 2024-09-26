@@ -492,8 +492,8 @@ const config: Config = {
         "Drop Shadow/500":
           "0px 4px 4px -4px rgba(12,12,13,0.05), 0px 16px 16px -8px rgba(12,12,13,0.1)",
         "Drop Shadow/600": "0px 16px 32px -8px rgba(12,12,13,0.4)",
-        "Blur/Overlay": "",
-        "Blur/Layer": "",
+        "Blur/Overlay": "0px 2px 6px 2px rgba(0, 0, 0, 0.15)",
+        "Blur/Layer": "0px 1px 2px 0px rgba(0, 0, 0, 0.3)",
         "Blur/Glass": "",
         "Inner Shadow/100": "inset 0px 1px 4px 0px rgba(12,12,13,0.05)",
         "Inner Shadow/200": "inset 0px 1px 4px 0px rgba(12,12,13,0.05)",

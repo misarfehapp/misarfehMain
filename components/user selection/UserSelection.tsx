@@ -5,6 +5,8 @@ import LocationIcon from "../address section/LocationIcon";
 import DollarIcon from "./DollarIcon";
 import HeadphoneIcon from "./HeadphoneIcon";
 import AlertIcon from "./AlertIcon";
+import ExitSection from "../exit section/ExitSection";
+import Segment from "../segment/Segment";
 
 const sections = [
   {
@@ -53,7 +55,12 @@ const UserSelection = () => {
           </div>
         </Link>
       ))}
+      <ExitSection />
       <div className="w-full h-[6px] bg-neutral-neutral90" />
+      <div className="flex flex-row items-center my-16 justify-between mx-6">
+        <Segment type="charity" helpedMoney={34000}/>
+        <Segment type="savedMoney" savedMoney={300000}/>
+      </div>
     </div>
   );
 };
