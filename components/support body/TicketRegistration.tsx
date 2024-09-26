@@ -13,9 +13,11 @@ const TicketRegistration = () => {
   const [message, setMessage] = useState<string>("");
   const [reasons, setReasons] = useState<string[]>(initialReasons);
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [showError, setShowError] = useState<boolean>(false);
 
   const handleReasonClick = (reason: string) => {
     // Append the selected reason to the message with a space between each reason
+    setShowError(false)
     setMessage((prevMessage) =>
       prevMessage ? `${prevMessage} ${reason}` : reason
     );
@@ -25,6 +27,11 @@ const TicketRegistration = () => {
   };
   const handleSubmit = () => {
     // Show the confirmation modal
+    if (message === "") {
+      setShowError(true);
+      return;
+    }
+    setShowError(false)
     setShowModal(true);
     setMessage("");
     setReasons(initialReasons);
@@ -37,6 +44,7 @@ const TicketRegistration = () => {
 
   const handleChange = (e: { target: { value: string } }) => {
     const value = e.target.value;
+    setShowError(false)
     setMessage(value);
   };
 
@@ -58,11 +66,18 @@ const TicketRegistration = () => {
         توضیحات
       </label>
       <textarea
-        className="ring-[1.52px] ring-[#C7C6CA] text-xs bg-[#FBF8FD] rounded-rounded-7 w-full min-h-24 mt-6 font-normal py-3 px-4 outline-none"
+        className={`ring-[1.52px] ${showError ? "ring-light-error" : "ring-[#C7C6CA]"} text-xs bg-[#FBF8FD] rounded-rounded-7 w-full min-h-24 mt-6 font-normal py-3 px-4 outline-none`}
         placeholder="توضیحات شما..."
         onChange={handleChange}
         value={message}
       />
+      {showError && (
+        <div>
+          <p className="text-light-error text-xs">
+            لطفا دلیل نارضایتی خود را بنویسید یا انتخاب کنید.
+          </p>
+        </div>
+      )}
       <div className="flex flex-col justify-center gap-3 mt-3">
         {reasons.map((reason) => (
           <p
