@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CopyIcon from "./CopyIcon";
-import SupportImage from "./supportImage";
+import SupportImage from "./SupportImage";
 
 const SupportHeader = () => {
   const [phoneNumber] = useState("071384846");
