@@ -39,8 +39,11 @@ const SupportHeader = () => {
             تماس با پشتیبانی
           </p>
           <div className="flex flex-row gap-2 items-center">
-            <p className="border-b text-neutral-neutral30 border-neutral-neutral30 text-base font-bold w-fit">
-              {phoneNumber}
+            <p
+              className="border-b text-neutral-neutral30 border-neutral-neutral30 text-base font-bold w-fit"
+              style={{ direction: "ltr" }}
+            >
+              {phoneNumber.replace(/\d{3}(?=\d)/g, "$& ")}
             </p>
             <div onClick={handleCopy} className="cursor-pointer">
               <CopyIcon />

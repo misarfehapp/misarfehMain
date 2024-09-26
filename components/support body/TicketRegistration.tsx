@@ -66,7 +66,7 @@ const TicketRegistration = () => {
         توضیحات
       </label>
       <textarea
-        className={`ring-[1.52px] ${showError ? "ring-light-error" : "ring-[#C7C6CA]"} text-xs bg-[#FBF8FD] rounded-rounded-7 w-full min-h-24 mt-6 font-normal py-3 px-4 outline-none`}
+        className={`ring-[1.52px] ${showError ? "ring-light-error" : "ring-[#C7C6CA]"} text-base bg-[#FBF8FD] rounded-rounded-7 w-full min-h-24 mt-6 font-normal py-3 px-4 outline-none`}
         placeholder="توضیحات شما..."
         onChange={handleChange}
         value={message}
