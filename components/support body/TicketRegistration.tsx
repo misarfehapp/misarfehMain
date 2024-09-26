@@ -12,7 +12,7 @@ const initialReasons = [
 const TicketRegistration = () => {
   const [message, setMessage] = useState<string>("");
   const [reasons, setReasons] = useState<string[]>(initialReasons);
-    const [showModal, setShowModal] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const handleReasonClick = (reason: string) => {
     // Append the selected reason to the message with a space between each reason
@@ -66,6 +66,7 @@ const TicketRegistration = () => {
       <div className="flex flex-col justify-center gap-3 mt-3">
         {reasons.map((reason) => (
           <p
+            key={reason}
             className="border-b border-neutral-neutral90 py-2 text-neutral-neutral30 text-sm font-medium "
             onClick={() => handleReasonClick(reason)}
           >

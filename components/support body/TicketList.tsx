@@ -62,8 +62,9 @@ const TicketList = () => {
   };
   return (
     <div className="w-full my-6 flex flex-col justify-center items-center gap-4">
-      {tickets.map((ticket) => (
+      {tickets.map((ticket, index) => (
         <div
+          key={index}
           className="ring-2 w-full outline-none ring-neutral-neutral90 rounded-rounded-9 bg-primary-primary99 p-3 flex flex-col justify-center gap-2"
           style={{ direction: "rtl" }}
         >
