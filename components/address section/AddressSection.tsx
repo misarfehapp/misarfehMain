@@ -218,7 +218,7 @@ const AddressSection = ({ isAddressMenu }: AddressSectionProps) => {
                 <textarea
                   value={newAddress}
                   onChange={(e) => setNewAddress(e.target.value)}
-                  className="ring-1 ring-gray-300 focus:outline-none focus:ring-light-primary p-2 rounded-lg w-full mb-4 text-base resize-none overflow-hidden"
+                  className="ring-1 ring-gray-300 focus:outline-none focus:ring-light-primary p-2 rounded-lg w-full mb-4 text-xs resize-none overflow-hidden"
                   style={{
                     direction: "rtl",
                     minHeight: "40px",
@@ -418,7 +418,7 @@ const AddressSection = ({ isAddressMenu }: AddressSectionProps) => {
                 <textarea
                   value={newAddress}
                   onChange={(e) => setNewAddress(e.target.value)}
-                  className="ring-1 ring-gray-300 focus:outline-none focus:ring-light-primary p-2 rounded-lg w-full mb-4 text-base resize-none overflow-hidden"
+                  className="ring-1 ring-gray-300 focus:outline-none focus:ring-light-primary p-2 rounded-lg w-full mb-4 text-xs resize-none overflow-hidden"
                   style={{
                     direction: "rtl",
                     minHeight: "40px",

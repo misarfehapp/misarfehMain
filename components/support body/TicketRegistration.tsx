@@ -17,7 +17,7 @@ const TicketRegistration = () => {
 
   const handleReasonClick = (reason: string) => {
     // Append the selected reason to the message with a space between each reason
-    setShowError(false)
+    setShowError(false);
     setMessage((prevMessage) =>
       prevMessage ? `${prevMessage} ${reason}` : reason
     );
@@ -31,7 +31,7 @@ const TicketRegistration = () => {
       setShowError(true);
       return;
     }
-    setShowError(false)
+    setShowError(false);
     setShowModal(true);
     setMessage("");
     setReasons(initialReasons);
@@ -44,7 +44,7 @@ const TicketRegistration = () => {
 
   const handleChange = (e: { target: { value: string } }) => {
     const value = e.target.value;
-    setShowError(false)
+    setShowError(false);
     setMessage(value);
   };
 
@@ -66,7 +66,7 @@ const TicketRegistration = () => {
         توضیحات
       </label>
       <textarea
-        className={`ring-[1.52px] ${showError ? "ring-light-error" : "ring-[#C7C6CA]"} text-base bg-[#FBF8FD] rounded-rounded-7 w-full min-h-24 mt-6 font-normal py-3 px-4 outline-none`}
+        className={`ring-[1.52px] ${showError ? "ring-light-error" : "ring-[#C7C6CA]"} text-xs bg-[#FBF8FD] rounded-rounded-7 w-full min-h-24 mt-6 font-normal py-3 px-4 outline-none`}
         placeholder="توضیحات شما..."
         onChange={handleChange}
         value={message}

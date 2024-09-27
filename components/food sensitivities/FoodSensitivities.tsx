@@ -69,7 +69,7 @@ const FoodSensitivities = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="جستجو کنید..."
-                className="flex-grow p-1 text-base border-none outline-none min-w-[100px]" // Ensure minimum width
+                className="flex-grow p-1 text-xs border-none outline-none min-w-[100px]" // Ensure minimum width
               />
             </div>
 
