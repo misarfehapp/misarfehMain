@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import ExitIcon from "../icons/ExitIcon";
+import WarningIcon from "./WarningIcon";
 
 const ExitSection = () => {
   // State to control the visibility of the pop-up
@@ -31,26 +32,32 @@ const ExitSection = () => {
         onClick={handleExitClick}
       >
         <ExitIcon />
-        <p className="text-light-error text-sm">خروج از حساب کاربری</p>
+        <p className="text-light-error text-sm font-bold">
+          خروج از حساب کاربری
+        </p>
       </div>
       {showExitConfirm && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-10">
-          <div className="bg-white p-5 rounded-lg shadow-lg text-center m-4">
-            <p className="text-lg font-medium mb-4">
+        <div className="fixed inset-0 flex items-center justify-center bg-neutral-neutral30 bg-opacity-50 z-10">
+          <div className="bg-white py-4 px-6 rounded-rounded-9 m-4 w-[358px] min-[170px] flex flex-col justify-center gap-3 shadow-Blur/Overlay">
+            <div className="flex flex-col justify-center items-center gap-1">
+              <WarningIcon />
+              <p className="text-sm font-bold text-[#525256]">هشدار</p>
+            </div>
+            <p className="text-xs font-medium">
               آیا می‌خواهید از حساب کاربری خود خارج شوید؟
             </p>
-            <div className="flex justify-center gap-4">
-              <button
-                onClick={handleConfirmExit}
-                className="bg-red-500 text-white px-4 py-2 rounded"
-              >
-                خروج
-              </button>
+            <div className="flex justify-end gap-2">
               <button
                 onClick={handleCancelExit}
-                className="bg-gray-300 px-4 py-2 rounded"
+                className="bg-white px-5 py-2 rounded-rounded-6 text-sm font-bold text-[#5E5E62]"
               >
-                انصراف
+                خیر
+              </button>
+              <button
+                onClick={handleConfirmExit}
+                className="bg-primary-primary99 text-[#006000] text-sm font-bold px-6 py-2 rounded"
+              >
+                بله
               </button>
             </div>
           </div>

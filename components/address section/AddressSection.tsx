@@ -10,6 +10,8 @@ import PlusIcon from "./PlusIcon";
 import CheckIcon from "../input/CheckIcon";
 import CrossIcon from "../input/CrossIcon";
 import LocationIcon from "./LocationIcon";
+import Link from "next/link";
+import ArrowBack from "../user header/ArrowBack";
 
 const places = [
   {
@@ -24,7 +26,11 @@ const places = [
   },
 ];
 
-const AddressSection = () => {
+interface AddressSectionProps {
+  isAddressMenu: boolean;
+}
+
+const AddressSection = ({ isAddressMenu }: AddressSectionProps) => {
   const [isAddressEmpty, setIsAddressEmpty] = useState<boolean>(false);
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
@@ -105,7 +111,18 @@ const AddressSection = () => {
     ) {
       setAddresses([
         ...addresses,
-        { name: addressName, address: newAddress, icon: selectedAddressType === "home" ? <HomeIcon/> : selectedAddressType === "work" ? <WorkIcon/> : <LocationIcon/>},
+        {
+          name: addressName,
+          address: newAddress,
+          icon:
+            selectedAddressType === "home" ? (
+              <HomeIcon />
+            ) : selectedAddressType === "work" ? (
+              <WorkIcon />
+            ) : (
+              <LocationIcon />
+            ),
+        },
       ]);
       setNewAddress("");
       setCustomAddressName(""); // Reset custom name field
@@ -121,13 +138,20 @@ const AddressSection = () => {
   return (
     <div className="w-[398px] flex flex-col justify-center items-center gap-4">
       <div className="w-full flex flex-row-reverse justify-between items-center ">
-        <p
-          style={{ direction: "rtl" }}
-          className="text-sm font-bold text-neutral-neutral30"
-        >
-          {" "}
-          آدرس های شما
-        </p>
+        <div className="flex flex-row gap-[10px]">
+          <p
+            style={{ direction: "rtl" }}
+            className="text-sm font-bold text-neutral-neutral30"
+          >
+            {" "}
+            آدرس های شما
+          </p>
+          {isAddressMenu && (
+            <Link href={"/userProfile"}>
+              <ArrowBack />
+            </Link>
+          )}
+        </div>
         <PlusIcon onClick={handleAddAddressClick} />
       </div>
       {isAddressEmpty ? (
@@ -146,7 +170,10 @@ const AddressSection = () => {
                 </p>
 
                 {/* Radio buttons to select address type */}
-                <div className="flex justify-around mb-4 gap-2" style={{direction:"rtl"}}>
+                <div
+                  className="flex justify-around mb-4 gap-2"
+                  style={{ direction: "rtl" }}
+                >
                   <label className="flex items-center flex-row gap-2">
                     <input
                       type="radio"
@@ -191,7 +218,7 @@ const AddressSection = () => {
                 <textarea
                   value={newAddress}
                   onChange={(e) => setNewAddress(e.target.value)}
-                  className="ring-1 ring-gray-300 focus:outline-none focus:ring-light-primary p-2 rounded-lg w-full mb-4 text-base resize-none overflow-hidden"
+                  className="ring-1 ring-gray-300 focus:outline-none focus:ring-light-primary p-2 rounded-lg w-full mb-4 text-xs resize-none overflow-hidden"
                   style={{
                     direction: "rtl",
                     minHeight: "40px",
@@ -391,7 +418,7 @@ const AddressSection = () => {
                 <textarea
                   value={newAddress}
                   onChange={(e) => setNewAddress(e.target.value)}
-                  className="ring-1 ring-gray-300 focus:outline-none focus:ring-light-primary p-2 rounded-lg w-full mb-4 text-base resize-none overflow-hidden"
+                  className="ring-1 ring-gray-300 focus:outline-none focus:ring-light-primary p-2 rounded-lg w-full mb-4 text-xs resize-none overflow-hidden"
                   style={{
                     direction: "rtl",
                     minHeight: "40px",

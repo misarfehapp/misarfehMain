@@ -2,8 +2,8 @@ import * as React from "react";
 const LocationIcon = (props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={18}
-    height={18}
+    width={20}
+    height={20}
     fill="none"
     stroke="#000"
     viewBox="0 0 24 24"

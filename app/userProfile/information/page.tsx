@@ -31,7 +31,7 @@ const page = () => {
       <div className="w-full h-[6px] bg-neutral-neutral90" />
       <div className="my-6 mx-4 flex flex-col gap-4">
         <div className="flex justify-center">
-          <AddressSection />
+          <AddressSection isAddressMenu={false} />
         </div>
       </div>
       <div className="w-full h-[6px] bg-neutral-neutral90" />
