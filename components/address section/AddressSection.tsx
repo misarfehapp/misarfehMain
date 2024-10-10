@@ -12,6 +12,7 @@ import CrossIcon from "../input/CrossIcon";
 import LocationIcon from "./LocationIcon";
 import Link from "next/link";
 import ArrowBack from "../user header/ArrowBack";
+import React from "react";
 
 const places = [
   {
