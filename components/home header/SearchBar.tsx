@@ -6,7 +6,7 @@ const SearchBar = () => {
       <input
         style={{ direction: "rtl" }}
         type="text"
-        className=" text-base font-medium w-full outline-none"
+        className="rounded-rounded-9 text-base font-medium w-full outline-none"
         placeholder="جستوجو مکان ٬ غذا یا دسته بندی..."
       />
       <SearchIcon />

@@ -1,3 +1,4 @@
+import Categories from "./Categories";
 import LocationSection from "./LocationSection";
 import SearchBar from "./SearchBar";
 import ShoppingCartIcon from "./ShoppingCartIcon";
@@ -11,6 +12,9 @@ const HomeHeader = () => {
       </div>
       <div className="flex items-center justify-center">
         <SearchBar />
+      </div>
+      <div className="flex items-center justify-center">
+        <Categories />
       </div>
     </div>
   );
