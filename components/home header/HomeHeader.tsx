@@ -1,3 +1,4 @@
+import ProductTracker from "../productTracker/ProductTracker";
 import Categories from "./Categories";
 import LocationSection from "./LocationSection";
 import SearchBar from "./SearchBar";
@@ -15,6 +16,19 @@ const HomeHeader = () => {
       </div>
       <div className="flex items-center justify-center">
         <Categories />
+      </div>
+      <div className="flex items-center justify-center">
+        <ProductTracker
+          title="سورپرایز صبحانه"
+          address="فست فود لاویا - بلوار بهشتی , 5.6 کیلومتر"
+          count={2}
+          pickupEnd={13}
+          pickupStart={9}
+          timeH={4}
+          timeM={38}
+          timeS={46}
+          progress={70}
+        />
       </div>
     </div>
   );

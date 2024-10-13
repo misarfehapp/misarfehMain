@@ -11,7 +11,7 @@ interface ProductTrackerProps {
   timeH: number;
   timeM: number;
   timeS: number;
-  progress:number;
+  progress: number;
 }
 const ProductTracker = ({
   title,
@@ -22,20 +22,18 @@ const ProductTracker = ({
   timeH,
   timeM,
   timeS,
-  progress
+  progress,
 }: ProductTrackerProps) => {
   return (
-    <div className="flex flex-col w-[398px] h-[110px] p-3 gap-4 bg-neutral-neutral95 rounded-rounded-9 ">
+    <div className="flex flex-col  h-[110px] p-3 gap-4 bg-neutral-neutral95 rounded-rounded-9 ">
       <div className="  flex flex-row-reverse gap-4">
-        <div>
-          <Image
-            src={imageSrc}
-            alt="food"
-            width={86}
-            height={64}
-            className="rounded-rounded-7"
-          />
-        </div>
+        <Image
+          src={imageSrc}
+          alt="food"
+          width={86}
+          height={64}
+          className="rounded-rounded-7"
+        />
         <div style={{ direction: "rtl" }} className="gap-2 flex flex-col">
           <div className="flex flex-col gap-0.5">
             <h2 className="w-[272px] h-[18px] font-bold text-[12px]">
@@ -64,13 +62,16 @@ const ProductTracker = ({
       </div>
       {/* progress bar */}
       <div className="flex flex-row-reverse items-center gap-2">
-        <div className="bg-neutral-neutral80 h-[4px] w-[326px] rounded-full flex flex-row-reverse ">
-          <div className="bg-light-primary  h-full rounded-full"
-          style={{width: `${progress}%`}}
+        <div className="bg-neutral-neutral80 h-[4px] w-full rounded-full flex flex-row-reverse ">
+          <div
+            className="bg-light-primary  h-full rounded-full"
+            style={{ width: `${progress}%` }}
           />
         </div>
         <div className="w-[40px] h-[14px] text-[10px] font-bold text-neutral-neutral35">
-          <time>{timeH}:{timeM}:{timeS}</time>
+          <time>
+            {timeH}:{timeM}:{timeS}
+          </time>
         </div>
       </div>
     </div>
