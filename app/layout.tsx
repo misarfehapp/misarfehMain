@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import MenuBar from "@/components/menu bar/MenuBar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,7 +20,10 @@ export default function RootLayout({
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
       </head>
-      <body>{children}</body>
+      <body className="min-h-screen flex flex-col">
+        <main className="flex-grow">{children}</main>
+        <MenuBar />
+      </body>
     </html>
   );
 }

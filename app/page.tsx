@@ -24,7 +24,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div>
-      <Link href={'/userProfile'}>userProfile</Link>
+      <Link href={'/homePage'}>go to the app</Link>
     </div>
     // <div className="mx-4 flex flex-col space-y-28 my-4 justify-center items-center">
     //   <div className="flex flex-row justify-around items-center gap-10 ">
