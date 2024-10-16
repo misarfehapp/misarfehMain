@@ -32,7 +32,7 @@ const ProductCard = ({
 }: ProductCardProps) => {
   return (
     <div className="w-[245px] h-[125px] relative">
-      <div className="w-[245px] h-[124px] absolute top-10 rounded-rounded-7 bg-gradient-to-t from-black/90 to-black/0" />
+      <div className="w-full h-[124px] absolute top-10 rounded-rounded-7 bg-gradient-to-t from-black/90 to-black/0" />
       <div className="absolute inset-0 flex flex-row-reverse items-start justify-between p-2">
         <h3 className="text-[8px] bg-black/70 font-medium text-white px-1 rounded-full">
           {title}
