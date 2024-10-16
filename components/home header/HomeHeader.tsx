@@ -12,7 +12,7 @@ const HomeHeader = () => {
         <ShoppingCartIcon />
       </div>
       <div className="flex items-center justify-center">
-        <SearchBar />
+        <SearchBar isHomePage={true} />
       </div>
       <div className="flex items-center justify-center">
         <Categories />

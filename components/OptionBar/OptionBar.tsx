@@ -3,15 +3,16 @@ import { motion } from "framer-motion";
 import PlusIcon from "./PlusIcon";
 import ListIcon from "./ListIcon";
 import { useState } from "react";
+import MapIcon from "./MapIcon";
 
 interface OptionBarProps {
-  type: string;
+  type: "support" | "explore";
   setSelectedOption: (option: string) => void;
 }
 
 const OptionBar = ({ type, setSelectedOption }: OptionBarProps) => {
   const [selectedOption, setLocalSelectedOption] = useState<string>(
-    type === "support" ? "ثبت تیکت" : "نقشه"
+    type === "support" ? "ثبت تیکت" : "لیست"
   );
 
   const handleSelect = (option: string) => {
@@ -29,13 +30,17 @@ const OptionBar = ({ type, setSelectedOption }: OptionBarProps) => {
               ? selectedOption === "تیکت ها"
                 ? 0
                 : "auto"
-              : 0,
+              : selectedOption === "لیست"
+                ? 0
+                : "auto",
           right:
             type === "support"
               ? selectedOption === "ثبت تیکت"
                 ? "8px"
                 : "auto"
-              : "8px",
+              : selectedOption === "نقشه"
+                ? "8px"
+                : "auto",
         }}
         initial={false}
         transition={{ duration: 0.3, ease: "easeInOut" }}
@@ -52,7 +57,7 @@ const OptionBar = ({ type, setSelectedOption }: OptionBarProps) => {
         onClick={() => handleSelect(type === "support" ? "ثبت تیکت" : "نقشه")}
       >
         <p>{type === "support" ? "ثبت تیکت" : "نقشه"}</p>
-        {type === "support" && <PlusIcon />}
+        {type === "support" ? <PlusIcon /> : <MapIcon />}
       </div>
     </div>
   );

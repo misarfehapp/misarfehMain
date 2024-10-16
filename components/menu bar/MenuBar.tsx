@@ -15,12 +15,12 @@ const links = [
   },
   {
     name: "explore",
-    path: "/services",
+    path: "/explore",
     icon: <ExploreIcon />,
   },
   {
     name: "favorite",
-    path: "/about",
+    path: "/favorite",
     icon: <HeartIcon />,
   },
   {
