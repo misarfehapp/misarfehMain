@@ -1,6 +1,7 @@
+"use client";
 import Image, { StaticImageData } from "next/image";
 import HeartIcon from "./HeartIcon";
-import { TimeHTMLAttributes } from "react";
+import { TimeHTMLAttributes, useState } from "react";
 import LocationIcon from "./LocationIcon";
 
 interface ProductCardProps {
@@ -30,16 +31,21 @@ const ProductCard = ({
   endPickUp,
   distance,
 }: ProductCardProps) => {
+  const [isSelected, setIsSelected] = useState<boolean>(false);
+
+  const handleClick = () => {
+    setIsSelected((prev) => !prev);
+  };
   return (
     <div className="w-[245px] h-[125px] relative">
       <div className="w-full h-[124px] absolute top-10 rounded-rounded-7 bg-gradient-to-t from-black/90 to-black/0" />
       <div className="absolute inset-0 flex flex-row-reverse items-start justify-between p-2">
+        <div className="bg-black/70 h-[14px] w-[14px] flex justify-center items-center rounded-full ">
+          <HeartIcon onClick={handleClick} isSelected={isSelected} />
+        </div>
         <h3 className="text-[8px] bg-black/70 font-medium text-white px-1 rounded-full">
           {title}
         </h3>
-        <div className="bg-black/70 h-[14px] w-[14px] flex justify-center items-center rounded-full ">
-          <HeartIcon className="hover:text-red-700" />
-        </div>
       </div>
       <Image
         src={productImageSrc}
@@ -49,7 +55,7 @@ const ProductCard = ({
         className="rounded-rounded-7"
       />
       {/* price */}
-      <div className="absolute -bottom-8 right-2 flex flex-row-reverse justify-start gap-2 items-center w-[127px] h-[18px]">
+      <div className="absolute -bottom-8 right-2 flex flex-row justify-start gap-2 items-center w-[127px] h-[18px]">
         <p
           style={{ direction: "rtl" }}
           className="text-white font-bold text-xs drop-shadow-2xl flex flex-row"
@@ -63,7 +69,7 @@ const ProductCard = ({
           }}
         >
           <span
-            className="absolute inset-0 top-2 left-[16px] bg-light-error w-[36px] h-[1.5px]"
+            className="absolute inset-0 top-2 right-[4.35rem] bg-light-error w-[36px] h-[1.5px]"
             style={{ borderRadius: "100px" }}
           />
           {priceBefore.toLocaleString()}
