@@ -39,7 +39,7 @@ const MenuBar = () => {
         <Link
           key={index}
           href={link.path}
-          className={`py-1 px-3 flex justify-center items-center  ${path === link.path ? "text-primary-primary70 bg-neutral-neutral30 rounded-rounded-4 shadow-lg" : "text-neutral-neutral70"} hover:text-primary-primary70`}
+          className={`min-w-[73.5px] min-h-8 flex justify-center items-center  ${path === link.path ? "text-primary-primary70 bg-neutral-neutral30 rounded-rounded-7 shadow-lg" : "text-neutral-neutral70"}`}
         >
           {link.icon}
         </Link>

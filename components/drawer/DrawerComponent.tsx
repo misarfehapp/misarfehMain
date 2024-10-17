@@ -13,17 +13,32 @@ import Segment from "../segment/Segment";
 import FilterIcon from "../explore header/FilterIcon";
 import { useState } from "react";
 import RangeSlider from "../RangeSlider/RangeSlider";
+import CheckIcon from "../check box/CheckIcon";
+import CrossIcon from "../input/CrossIcon";
 
 interface DrawerComponentProps {
   type: string;
 }
 
+const surpriseKinds = ["نان و شیرینی", "سبزیجات", "ناهار", "سایر"];
+
 const DrawerComponent = ({ type }: DrawerComponentProps) => {
   const [selectedDay, setSelectedDay] = useState<string>("امروز");
+  const [selectedSurprises, setSelectedSurprises] = useState<string[]>([]); // Initialize with empty array
+
   const changeDayHandler = () => {
-    selectedDay === "امروز" && setSelectedDay("فردا");
-    selectedDay === "فردا" && setSelectedDay("امروز");
+    selectedDay === "امروز" ? setSelectedDay("فردا") : setSelectedDay("امروز");
   };
+
+  const toggleSurpriseSelection = (surprise: string) => {
+    setSelectedSurprises((prevSelected) =>
+      prevSelected.includes(surprise)
+        ? prevSelected.filter((item) => item !== surprise)
+        : [...prevSelected, surprise]
+    );
+  };
+  console.log(selectedSurprises);
+
   return (
     <div>
       <Drawer>
@@ -67,13 +82,21 @@ const DrawerComponent = ({ type }: DrawerComponentProps) => {
               </p>
               <div className="flex flex-row justify-center items-center gap-3">
                 <div
-                  className={`${selectedDay === "امروز" ? "bg-neutral-neutral15 text-white" : "text-neutral-neutral40"} ring-2 ring-neutral-neutral90 rounded-rounded-7 py-3 px-4 min-w-[170px] max-h-[44px] text-center`}
+                  className={`${
+                    selectedDay === "امروز"
+                      ? "bg-neutral-neutral15 text-white"
+                      : "text-neutral-neutral40"
+                  } ring-2 ring-neutral-neutral90 rounded-rounded-7 py-3 px-4 min-w-[170px] max-h-[44px] text-center`}
                   onClick={changeDayHandler}
                 >
                   امروز
                 </div>
                 <div
-                  className={`${selectedDay === "فردا" ? "bg-neutral-neutral15 text-white" : "text-neutral-neutral40"} ring-2 ring-neutral-neutral90 rounded-rounded-7 py-3 px-4 min-w-[170px] max-h-[44px] text-center`}
+                  className={`${
+                    selectedDay === "فردا"
+                      ? "bg-neutral-neutral15 text-white"
+                      : "text-neutral-neutral40"
+                  } ring-2 ring-neutral-neutral90 rounded-rounded-7 py-3 px-4 min-w-[170px] max-h-[44px] text-center`}
                   onClick={changeDayHandler}
                 >
                   فردا
@@ -96,11 +119,40 @@ const DrawerComponent = ({ type }: DrawerComponentProps) => {
                 />
               </div>
             </div>
+            <div className="flex flex-col justify-center gap-3 mt-12">
+              <p className="text-sm font-bold text-neutral-neutral30">
+                نوع سورپرایز
+              </p>
+              <div className="flex flex-row gap-2">
+                {surpriseKinds.map((surprise) => (
+                  <div
+                    key={surprise}
+                    className={`cursor-pointer border-2 rounded-rounded-7 px-4 py-2 text-sm font-medium ${
+                      selectedSurprises.includes(surprise)
+                        ? "bg-neutral-neutral15 text-white border-primary"
+                        : "bg-white text-black border-gray-300"
+                    }`}
+                    onClick={() => toggleSurpriseSelection(surprise)}
+                  >
+                    {surprise}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-          <DrawerFooter className="flex justify-center mt-4">
-            <button className="bg-primary text-black py-2 px-4 rounded-md">
-              انتخاب و ورود
-            </button>
+          <DrawerFooter className="flex justify-center">
+            <DrawerClose asChild>
+              <button className="bg-[#006000] text-white py-3 px-6 rounded-rounded-7 text-xs flex flex-row gap-2 justify-center items-center">
+                <CheckIcon />
+                اعمال فیلتر ها
+              </button>
+            </DrawerClose>
+            <DrawerClose asChild>
+              <button className="text-neutral-neutral50 py-3 px-6 rounded-rounded-7 text-xs flex flex-row gap-2 justify-center items-center">
+                <CrossIcon stroke="#797776" />
+                لغو همه
+              </button>
+            </DrawerClose>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

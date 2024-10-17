@@ -1,5 +1,7 @@
 import * as React from "react";
-const ExploreIcon = (props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
+const ExploreIcon = (
+  props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>
+) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={18}
@@ -8,7 +10,7 @@ const ExploreIcon = (props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSV
     {...props}
   >
     <path
-      stroke="#ADAAAA"
+      stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}
