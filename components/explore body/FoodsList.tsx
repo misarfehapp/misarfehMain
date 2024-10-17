@@ -53,7 +53,7 @@ const FoodsList = () => {
           </Select>
         </div>
       </div>
-      <ScrollArea className="h-[325px]">
+      <ScrollArea className="h-screen">
         <div
           className=" my-6 flex flex-col mx-4 justify-center items-center gap-24"
           style={{ direction: "rtl" }}

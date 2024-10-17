@@ -1,3 +1,4 @@
+import DrawerComponent from "../drawer/DrawerComponent";
 import LocationSection from "../home header/LocationSection";
 import SearchBar from "../home header/SearchBar";
 import ShoppingCartIcon from "../home header/ShoppingCartIcon";
@@ -13,14 +14,12 @@ const ExploreHeader = () => {
       </div>
       <div className="flex items-center justify-between w-full flex-row-reverse">
         <SearchBar isHomePage={false} />
-        <div className="w-[50.5px] h-[50.5px] ring-2 ring-neutral-neutral80 rounded-rounded-9 py-2 px-4 flex justify-center items-center">
-          <FilterIcon />
-        </div>
+        {/* filter */}
+        <DrawerComponent type="filter" />
         <div className="w-[50.5px] h-[50.5px] ring-2 ring-neutral-neutral80 rounded-rounded-9 py-2 px-4 flex justify-center items-center">
           <LocationIcon />
         </div>
       </div>
-
     </div>
   );
 };
