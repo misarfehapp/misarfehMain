@@ -16,6 +16,7 @@ interface ProductCardProps {
   startPickUp: string;
   endPickUp: string;
   distance: number;
+  width?: string;
 }
 
 const ProductCard = ({
@@ -30,6 +31,7 @@ const ProductCard = ({
   startPickUp,
   endPickUp,
   distance,
+  width,
 }: ProductCardProps) => {
   const [isSelected, setIsSelected] = useState<boolean>(false);
 
@@ -37,7 +39,7 @@ const ProductCard = ({
     setIsSelected((prev) => !prev);
   };
   return (
-    <div className="w-[245px] h-[125px] relative">
+    <div className={`${width ? width : "w-[245px]"} h-[125px] relative`}>
       <div className="w-full h-[124px] absolute top-10 rounded-rounded-7 bg-gradient-to-t from-black/90 to-black/0" />
       <div className="absolute inset-0 flex flex-row-reverse items-start justify-between p-2">
         <div className="bg-black/70 h-[14px] w-[14px] flex justify-center items-center rounded-full ">
@@ -50,9 +52,9 @@ const ProductCard = ({
       <Image
         src={productImageSrc}
         alt="product"
-        width={245}
+        width={width ? 398 : 245}
         height={125}
-        className="rounded-rounded-7"
+        className={`rounded-rounded-7 ${width ? "h-[164px]" : ""}`}
       />
       {/* price */}
       <div className="absolute -bottom-8 right-2 flex flex-row justify-start gap-2 items-center w-[127px] h-[18px]">
