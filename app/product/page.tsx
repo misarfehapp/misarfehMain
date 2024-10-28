@@ -1,10 +1,14 @@
+"use client";
 import OrderProductCard from "@/components/productCard/OrderProductCard";
 import ArrowBack from "@/components/user header/ArrowBack";
 import ProductImageSrc from "@/components/productCard/bg.jpeg";
 import RestaurantImageSrc from "@/components/productCard/restaurant.jpeg";
 import Link from "next/link";
+import OptionBar from "@/components/OptionBar/OptionBar";
+import { useState } from "react";
 
 const product = () => {
+  const [selectedOption, setSelectedOption] = useState<string>("حضوری");
   return (
     <div className="flex justify-center mx-4">
       <div className="w-full max-w-[398px] flex flex-col items-center gap-4">
@@ -30,6 +34,10 @@ const product = () => {
             priceBefore={128000}
             width="w-full"
           />
+          {/* option bar */}
+          <div className="mt-20">
+            <OptionBar setSelectedOption={setSelectedOption} type="order" />
+          </div>
         </div>
       </div>
     </div>
