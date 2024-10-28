@@ -2,6 +2,7 @@ import ChevronLeftGreen from "./ChevronLeftGreen";
 import ProductImageSrc from "@/components/productCard/bg.jpeg";
 import RestaurantImageSrc from "@/components/productCard/restaurant.jpeg";
 import ProductCard from "../productCard/ProductCard";
+import Link from "next/link";
 
 const NearbyRestaurant = () => {
   const products = Array.from({ length: 10 }).map((_, index) => ({
@@ -39,20 +40,22 @@ const NearbyRestaurant = () => {
       >
         <div className="flex gap-4 flex-row">
           {products.map((p) => (
-            <ProductCard
-              key={p.id}
-              title={p.title}
-              discount={p.discount}
-              priceAfter={p.priceAfter}
-              priceBefore={p.priceBefore}
-              productImageSrc={p.productImageSrc}
-              restaurantImageSrc={p.restaurantImageSrc}
-              descriptionTitle={p.descriptionTitle}
-              description={p.description}
-              startPickUp={p.startPickUp}
-              endPickUp={p.endPickUp}
-              distance={p.distance}
-            />
+            <Link key={p.id} href={`/product`}>
+                <ProductCard
+                  key={p.id}
+                  title={p.title}
+                  discount={p.discount}
+                  priceAfter={p.priceAfter}
+                  priceBefore={p.priceBefore}
+                  productImageSrc={p.productImageSrc}
+                  restaurantImageSrc={p.restaurantImageSrc}
+                  descriptionTitle={p.descriptionTitle}
+                  description={p.description}
+                  startPickUp={p.startPickUp}
+                  endPickUp={p.endPickUp}
+                  distance={p.distance}
+                />
+            </Link>
           ))}
         </div>
       </div>

@@ -3,6 +3,8 @@ import Image, { StaticImageData } from "next/image";
 import HeartIcon from "./HeartIcon";
 import { TimeHTMLAttributes, useState } from "react";
 import LocationIcon from "./LocationIcon";
+import StarIcon from "../comments/StarIcon";
+import ShareIcon from "./ShareIcon";
 
 interface ProductCardProps {
   title: string;
@@ -12,14 +14,13 @@ interface ProductCardProps {
   productImageSrc: StaticImageData;
   restaurantImageSrc: StaticImageData;
   descriptionTitle: string;
-  description: string;
-  startPickUp: string;
-  endPickUp: string;
   distance: number;
+  rate: number;
+  location: string;
   width?: string;
 }
 
-const ProductCard = ({
+const OrderProductCard = ({
   title,
   priceBefore,
   priceAfter,
@@ -27,10 +28,9 @@ const ProductCard = ({
   productImageSrc,
   restaurantImageSrc,
   descriptionTitle,
-  description,
-  startPickUp,
-  endPickUp,
   distance,
+  location,
+  rate,
   width,
 }: ProductCardProps) => {
   const [isSelected, setIsSelected] = useState<boolean>(false);
@@ -41,15 +41,21 @@ const ProductCard = ({
   return (
     <div className={`${width ? width : "w-[245px]"} h-[125px] relative`}>
       <div className="w-full h-[124px] absolute top-10 rounded-rounded-7 bg-gradient-to-t from-black/90 to-black/0" />
-      <div className="absolute inset-0 flex flex-row-reverse items-start justify-between p-2">
-        <div className="bg-black/70 h-[14px] w-[14px] flex justify-center items-center rounded-full ">
-          <HeartIcon
-            isOrderCard={false}
-            onClick={handleClick}
-            isSelected={isSelected}
-          />
+      <div className="absolute inset-0 flex flex-row items-start justify-between p-2">
+        <div className="flex flex-row gap-2 items-center">
+          <div className="bg-white h-5 w-8 flex justify-center items-center rounded-full ">
+            <HeartIcon
+              isOrderCard={true}
+              stroke="#000"
+              onClick={handleClick}
+              isSelected={isSelected}
+            />
+          </div>
+          <div className="bg-white h-5 w-8 flex justify-center items-center rounded-full ">
+            <ShareIcon />
+          </div>
         </div>
-        <h3 className="text-[8px] bg-black/70 font-medium text-white px-1 rounded-full">
+        <h3 className="text-2xs min-w-[45px] min-h-[18px] flex justify-center items-center bg-white font-medium text-neutral-neutral30 rounded-full">
           {title}
         </h3>
       </div>
@@ -61,7 +67,7 @@ const ProductCard = ({
         className={`rounded-rounded-7 ${width ? "h-[164px]" : ""}`}
       />
       {/* price */}
-      <div className="absolute -bottom-8 right-2 flex flex-row justify-start gap-2 items-center w-[127px] h-[18px]">
+      <div className="absolute -bottom-8 left-2 flex flex-row-reverse justify-start gap-2 items-center w-[127px] h-[18px]">
         <p
           style={{ direction: "rtl" }}
           className="text-white font-bold text-xs drop-shadow-2xl flex flex-row"
@@ -75,7 +81,7 @@ const ProductCard = ({
           }}
         >
           <span
-            className="absolute inset-0 top-2 right-[4.35rem] bg-light-error w-[36px] h-[1.5px]"
+            className="absolute inset-0 top-2 left-[1.30rem] bg-light-error w-[36px] h-[1.5px]"
             style={{ borderRadius: "100px" }}
           />
           {priceBefore.toLocaleString()}
@@ -85,34 +91,38 @@ const ProductCard = ({
         </p>
       </div>
       {/* restaurant image */}
-      <div className="absolute -bottom-[38px] left-[1px] ring-2 ring-white rounded-tr-rounded-7 rounded-bl-rounded-7">
+      <div className="absolute -bottom-[80px] right-[12px] ring-[5px] ring-white rounded-rounded-7">
         <Image
           src={restaurantImageSrc}
           alt="restaurant"
-          width={31}
-          height={24}
-          className="rounded-tr-rounded-7 rounded-bl-rounded-7"
+          width={75}
+          height={68}
+          className="rounded-rounded-7"
         />
       </div>
       {/* description */}
-      <div className="px-2 mt-2 " style={{ direction: "rtl" }}>
-        <h2 className="text-xs text-neutral-neutral25">{descriptionTitle}</h2>
-        <div className="flex flex-row gap-2">
-          <div className="flex flex-row text-xs font-normal gap-1 text-neutral-neutral25">
-            <p>{description}</p>
-            <p>
-              {startPickUp} <span>-</span> {endPickUp}
-            </p>
-          </div>
-          <div className="text-xs flex flex-row items-center text-neutral-neutral40 gap-0.5">
+      <div className="px-2 mt-2 absolute right-24" style={{ direction: "rtl" }}>
+        <h2 className="text-sm text-neutral-neutral30 font-bold">
+          {descriptionTitle}
+        </h2>
+        <div className="flex flex-row gap-2 text-2xs text-neutral-neutral30 items-center">
+          <div className=" flex flex-row items-center gap-1">
             <LocationIcon />
             <p className="flex flex-row gap-1">
-              {distance} <span>ک</span>
+              {distance < 1 ? distance * 1000 : distance}{" "}
+              <span>{distance < 1 ? "متر" : "کیلومتر"} </span>
             </p>
+          </div>
+          <span>|</span>
+          <p>{location}</p>
+          <span>|</span>
+          <div className="flex flex-row items-center gap-1">
+            <StarIcon stroke="#FF6E01" fill="#FF6E01" />
+            <p>{rate}</p>
           </div>
         </div>
       </div>
     </div>
   );
 };
-export default ProductCard;
+export default OrderProductCard;
