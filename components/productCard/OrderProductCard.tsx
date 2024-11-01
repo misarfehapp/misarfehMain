@@ -89,7 +89,7 @@ const OrderProductCard = ({
           />
         </div>
         <div className="relative flex items-center justify-center">
-          <p className="text-[6px] text-white bg-light-error font-bold w-[17px] h-[14px] rounded-full flex flex-row justify-center items-center px-[4px] ">
+          <p className="text-[6px] -left-4 absolute text-white bg-light-error font-bold w-[17px] h-[14px] rounded-full flex flex-row justify-center items-center px-[4px] ">
             {discount} <span>%</span>
           </p>
         </div>
