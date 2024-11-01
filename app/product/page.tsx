@@ -119,7 +119,7 @@ const Product = () => {
               </div>
             </div>
             <div
-              className="relative flex min-h-[140px] w-full"
+              className="relative flex min-h-[168px] w-full"
               style={{ direction: "rtl" }}
             >
               <div className="absolute left-0 top-0 h-full w-[67px] bg-gradient-to-r from-white to-transparent pointer-events-none z-10"></div>
