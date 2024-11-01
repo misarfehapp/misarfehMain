@@ -67,7 +67,7 @@ const OrderProductCard = ({
         className={`rounded-rounded-7 ${width ? "h-[164px]" : ""}`}
       />
       {/* price */}
-      <div className="absolute -bottom-8 left-2 flex flex-row-reverse gap-2 items-center w-[127px] h-[18px]">
+      <div className="absolute -bottom-8 left-4 flex flex-row-reverse justify-center gap-2 items-center w-[127px] h-[18px]">
         <p
           style={{ direction: "rtl" }}
           className="text-white font-bold text-xs drop-shadow-2xl flex flex-row"
