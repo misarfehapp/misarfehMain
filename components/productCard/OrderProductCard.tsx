@@ -83,14 +83,16 @@ const OrderProductCard = ({
           >
             {priceBefore.toLocaleString()}
           </p>
-            <span
-              className="absolute bg-light-error w-full h-[1.5px]"
-              style={{ borderRadius: "100px" }}
-            />
+          <span
+            className="absolute bg-light-error w-full h-[1.5px]"
+            style={{ borderRadius: "100px" }}
+          />
         </div>
-        <p className="text-[6px] text-white bg-light-error font-bold w-[17px] h-[14px] rounded-full flex flex-row justify-center items-center px-[4px] ">
-          {discount} <span>%</span>
-        </p>
+        <div className="relative flex items-center justify-center">
+          <p className="text-[6px] text-white bg-light-error font-bold w-[17px] h-[14px] rounded-full flex flex-row justify-center items-center px-[4px] ">
+            {discount} <span>%</span>
+          </p>
+        </div>
       </div>
       {/* restaurant image */}
       <div className="absolute -bottom-[80px] right-[12px] ring-[5px] ring-white rounded-rounded-7">

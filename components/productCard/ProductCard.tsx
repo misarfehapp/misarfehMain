@@ -82,9 +82,11 @@ const ProductCard = ({
             style={{ borderRadius: "100px" }}
           />
         </div>
-        <p className="text-[6px] text-white bg-light-error font-bold w-[17px] h-[14px] rounded-full flex flex-row justify-center items-center px-[4px] ">
-          {discount} <span>%</span>
-        </p>
+        <div className="relative flex items-center justify-center">
+          <p className="text-[6px] text-white bg-light-error font-bold w-[17px] h-[14px] rounded-full flex flex-row justify-center items-center px-[4px] ">
+            {discount} <span>%</span>
+          </p>
+        </div>
       </div>
       {/* restaurant image */}
       <div className="absolute -bottom-[38px] left-[1px] ring-2 ring-white rounded-tr-rounded-7 rounded-bl-rounded-7">
