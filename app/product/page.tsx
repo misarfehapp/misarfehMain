@@ -7,9 +7,26 @@ import Link from "next/link";
 import OptionBar from "@/components/OptionBar/OptionBar";
 import { useState } from "react";
 import MapIcon from "@/components/OptionBar/MapIcon";
+import ChevronLeftGreen from "@/components/home body/ChevronLeftGreen";
+import Comments from "@/components/comments/Comments";
+
+const description =
+  "ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون  ورم ایپسوم ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون  ورم ایپسوم ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون  ورم ایپسوم ";
 
 const Product = () => {
   const [selectedOption, setSelectedOption] = useState<string>("حضوری");
+  const [showMore, setShowMore] = useState<boolean>(false);
+  const comments = Array.from({ length: 10 }).map((_, index) => ({
+    firstName: "الینا",
+    lastName: "ریاضی",
+    joinTime: "23 تیر",
+    satisfaction: 3,
+    comment:
+      "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطر آن چنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می‌باشد.",
+  }));
+  const toggleShowMore = () => {
+    setShowMore((prev: any) => !prev);
+  };
   return (
     <div className="flex justify-center mx-4">
       <div className="w-full max-w-[398px] flex flex-col items-center gap-4">
@@ -40,30 +57,88 @@ const Product = () => {
             <OptionBar setSelectedOption={setSelectedOption} type="order" />
           </div>
           {/* address section */}
-          <div className="flex flex-row gap-4 items-center">
+          <div className="flex flex-row justify-between items-center">
             <div className="flex flex-row text-key-colors-primary bg-primary-primary99 gap-[10px] py-1 px-2 items-center font-bold text-xs">
               <p>مسیریابی</p>
               <MapIcon stroke="#006000" />
             </div>
-            <div className="flex flex-col justify-center items-end">
-              <p className="text-neutral-neutral40 text-2xs font-medium">
-                آدرس
-              </p>
-              <p className="text-key-colors-primary">
-                بلوار پاسداران خیابان غفوری
-              </p>
-            </div>
-            <div className="bg-key-colors-primary w-8 h-8 flex justify-center items-center rounded-rounded-6">
-              <MapIcon stroke="#fff" />
+            <div className="flex flex-row items-center gap-4">
+              <div className="flex flex-col justify-center items-end">
+                <p className="text-neutral-neutral40 text-2xs font-medium">
+                  آدرس
+                </p>
+                <p className="text-key-colors-primary font-bold text-xs">
+                  بلوار پاسداران خیابان غفوری
+                </p>
+              </div>
+              <div className="bg-key-colors-primary w-8 h-8 flex justify-center items-center rounded-rounded-6">
+                <MapIcon stroke="#fff" />
+              </div>
             </div>
           </div>
           {/* description */}
           <div className="w-full bg-neutral-neutral90 h-2" />
-          <div>
-            <p>توضیحات</p>
-            <p></p>
+          <div className="text-right flex flex-col gap-3">
+            <p className="font-bold text-sm">توضیحات</p>
+            <div
+              style={{ direction: "rtl" }}
+              className="font-medium text-xs text-justify text-neutral-neutral35"
+            >
+              {description.length > 150 && !showMore
+                ? `${description.slice(0, 150)}...`
+                : description}
+
+              {description.length > 150 && (
+                <span
+                  className="text-key-colors-primary"
+                  onClick={toggleShowMore}
+                >
+                  {showMore ? "کمتر" : "بیشتر"}
+                </span>
+              )}
+            </div>
           </div>
           <div className="w-full bg-neutral-neutral90 h-2" />
+          {/* comments */}
+          <div className="flex flex-col">
+            <div className="flex flex-row justify-between items-start">
+              <div className="flex flex-row items-center gap-1 font-bold text-2xs text-key-colors-primary">
+                <ChevronLeftGreen />
+                <p>همه نظرات</p>
+              </div>
+              <div className="">
+                <p className="text-sm font-bold text-neutral-neutral30">
+                  نظر کاربران
+                </p>
+                <p
+                  style={{ direction: "rtl" }}
+                  className="flex flex-row gap-1 text-xs font-medium text-neutral-neutral30"
+                >
+                  <span>89</span>نظر
+                </p>
+              </div>
+            </div>
+            <div
+              className="relative flex min-h-[140px] w-full"
+              style={{ direction: "rtl" }}
+            >
+              <div className="absolute left-0 top-0 h-full w-[67px] bg-gradient-to-r from-white to-transparent pointer-events-none z-10"></div>
+
+              <div className="flex items-center overflow-x-auto gap-4 flex-row w-full h-full px-1.5">
+                {comments.map((c, index) => (
+                  <div key={index}>
+                    <Comments
+                      comment={c.comment}
+                      firstName={c.firstName}
+                      lastName={c.lastName}
+                      joinTime={c.joinTime}
+                      satisfaction={c.satisfaction}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

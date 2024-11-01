@@ -24,8 +24,8 @@ const Comments = ({
   };
   return (
     <div className="ring ring-neutral-neutral90 rounded-rounded-7 py-2 px-3 w-[233px] shadow-sm gap-2 flex flex-col">
-      <div className="flex justify-between items-end flex-col gap-[6px]">
-        <div className="flex flex-col items-end">
+      <div className="flex justify-between items-start flex-col gap-[6px]">
+        <div className="flex flex-col items-start">
           <h2 className="font-bold text-xs text-neutral-neutral30">
             {firstName} {lastName}
           </h2>
