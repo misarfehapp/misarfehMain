@@ -8,7 +8,7 @@ import OptionBar from "@/components/OptionBar/OptionBar";
 import { useState } from "react";
 import MapIcon from "@/components/OptionBar/MapIcon";
 
-const product = () => {
+const Product = () => {
   const [selectedOption, setSelectedOption] = useState<string>("حضوری");
   return (
     <div className="flex justify-center mx-4">
@@ -69,4 +69,4 @@ const product = () => {
     </div>
   );
 };
-export default product;
+export default Product;
