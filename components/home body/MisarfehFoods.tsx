@@ -28,7 +28,7 @@ const MisarfehFoods = () => {
         <p className="text-base font-bold text-neutral-neutral30">
           اینا می صرفه!
         </p>
-        <div className="gap-1 flex flex-row items-center text-2xs font-bold text-[#006000]">
+        <div className="gap-1 flex flex-row items-center text-2xs font-bold text-key-colors-primary">
           <p>بیشتر</p>
           <ChevronLeftGreen />
         </div>
@@ -41,22 +41,20 @@ const MisarfehFoods = () => {
         <div className="flex gap-4 flex-row">
           {products.map((p) => (
             <Link key={p.id} href={`/product`}>
-              
-                <ProductCard
-                  key={p.id}
-                  title={p.title}
-                  discount={p.discount}
-                  priceAfter={p.priceAfter}
-                  priceBefore={p.priceBefore}
-                  productImageSrc={p.productImageSrc}
-                  restaurantImageSrc={p.restaurantImageSrc}
-                  descriptionTitle={p.descriptionTitle}
-                  description={p.description}
-                  startPickUp={p.startPickUp}
-                  endPickUp={p.endPickUp}
-                  distance={p.distance}
-                />
-              
+              <ProductCard
+                key={p.id}
+                title={p.title}
+                discount={p.discount}
+                priceAfter={p.priceAfter}
+                priceBefore={p.priceBefore}
+                productImageSrc={p.productImageSrc}
+                restaurantImageSrc={p.restaurantImageSrc}
+                descriptionTitle={p.descriptionTitle}
+                description={p.description}
+                startPickUp={p.startPickUp}
+                endPickUp={p.endPickUp}
+                distance={p.distance}
+              />
             </Link>
           ))}
         </div>

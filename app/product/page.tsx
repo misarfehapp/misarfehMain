@@ -6,6 +6,7 @@ import RestaurantImageSrc from "@/components/productCard/restaurant.jpeg";
 import Link from "next/link";
 import OptionBar from "@/components/OptionBar/OptionBar";
 import { useState } from "react";
+import MapIcon from "@/components/OptionBar/MapIcon";
 
 const product = () => {
   const [selectedOption, setSelectedOption] = useState<string>("حضوری");
@@ -38,6 +39,31 @@ const product = () => {
           <div className="mt-20">
             <OptionBar setSelectedOption={setSelectedOption} type="order" />
           </div>
+          {/* address section */}
+          <div className="flex flex-row gap-4 items-center">
+            <div className="flex flex-row text-key-colors-primary bg-primary-primary99 gap-[10px] py-1 px-2 items-center font-bold text-xs">
+              <p>مسیریابی</p>
+              <MapIcon stroke="#006000" />
+            </div>
+            <div className="flex flex-col justify-center items-end">
+              <p className="text-neutral-neutral40 text-2xs font-medium">
+                آدرس
+              </p>
+              <p className="text-key-colors-primary">
+                بلوار پاسداران خیابان غفوری
+              </p>
+            </div>
+            <div className="bg-key-colors-primary w-8 h-8 flex justify-center items-center rounded-rounded-6">
+              <MapIcon stroke="#fff" />
+            </div>
+          </div>
+          {/* description */}
+          <div className="w-full bg-neutral-neutral90 h-2" />
+          <div>
+            <p>توضیحات</p>
+            <p></p>
+          </div>
+          <div className="w-full bg-neutral-neutral90 h-2" />
         </div>
       </div>
     </div>

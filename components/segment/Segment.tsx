@@ -17,7 +17,7 @@ const Segment = ({
 }: SegmentProps) => {
   return (
     <button
-      className={`h-[97px] w-[155px] bg-neutral-neutral98 rounded-rounded-9 flex flex-col justify-center items-center relative focus:ring-2 focus:ring-[#006000] focus:outline-none ${(type === "savedMoney" || type === "charity") && "ring-2 outline-none ring-[#006000]"}`}
+      className={`h-[97px] w-[155px] bg-neutral-neutral98 rounded-rounded-9 flex flex-col justify-center items-center relative focus:ring-2 focus:ring-key-colors-primary focus:outline-none ${(type === "savedMoney" || type === "charity") && "ring-2 outline-none ring-key-colors-primary"}`}
       style={{ direction: "rtl" }}
     >
       {type === "sensitivity" && sensitivity ? (

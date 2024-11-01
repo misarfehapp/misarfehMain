@@ -40,7 +40,7 @@ const OTPInput = () => {
             ref={index === activeOTPIndex ? inputRef : null}
             type="number"
             value={otp[index]}
-            className="w-[74.5px] h-12 ring-2 rounded-rounded-7 bg-transparent outline-none text-center font-semibold text-xl ring-[#C7C6CA] focus:ring-[#006000] focus:w-[68px] focus:h-[54px] text-[#46464A] transition"
+            className="w-[74.5px] h-12 ring-2 rounded-rounded-7 bg-transparent outline-none text-center font-semibold text-xl ring-[#C7C6CA] focus:ring-key-colors-primary focus:w-[68px] focus:h-[54px] text-[#46464A] transition"
             onChange={handleOnChange}
             onKeyDown={(e) => handleKeyDown(e, index)}
           />

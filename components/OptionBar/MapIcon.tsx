@@ -8,7 +8,7 @@ const MapIcon = (props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGEle
     {...props}
   >
     <path
-      stroke="#484646"
+      stroke={props.stroke ||  "#484646"}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={1.6}

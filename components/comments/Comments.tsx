@@ -51,7 +51,7 @@ const Comments = ({
         {/* {comment.length > 100 && isExpanded && comment} */}
         {comment.length > 100 && (
           <span
-            className="text-[#006000] cursor-pointer"
+            className="text-key-colors-primary cursor-pointer"
             onClick={toggleExpand}
           >
             {isExpanded ? " کمتر" : " بیشتر"}

@@ -74,18 +74,20 @@ const OrderProductCard = ({
         >
           {priceAfter.toLocaleString()} <span>تومان</span>
         </p>
-        <p
-          className="text-2xs font-medium text-white w-[32px] h-[14px]"
-          style={{
-            direction: "rtl",
-          }}
-        >
-          <span
-            className="absolute inset-0 top-2 left-[1.30rem] bg-light-error w-[36px] h-[1.5px]"
-            style={{ borderRadius: "100px" }}
-          />
-          {priceBefore.toLocaleString()}
-        </p>
+        <div className="relative flex items-center">
+          <p
+            className="text-2xs font-medium text-white w-[32px] h-[14px]"
+            style={{
+              direction: "rtl",
+            }}
+          >
+            {priceBefore.toLocaleString()}
+          </p>
+            <span
+              className="absolute bg-light-error w-full h-[1.5px]"
+              style={{ borderRadius: "100px" }}
+            />
+        </div>
         <p className="text-[6px] text-white bg-light-error font-bold w-[17px] h-[14px] rounded-full flex flex-row justify-center items-center px-[4px] ">
           {discount} <span>%</span>
         </p>

@@ -142,7 +142,7 @@ const DrawerComponent = ({ type }: DrawerComponentProps) => {
           </div>
           <DrawerFooter className="flex justify-center">
             <DrawerClose asChild>
-              <button className="bg-[#006000] text-white py-3 px-6 rounded-rounded-7 text-xs flex flex-row gap-2 justify-center items-center">
+              <button className="bg-key-colors-primary text-white py-3 px-6 rounded-rounded-7 text-xs flex flex-row gap-2 justify-center items-center">
                 <CheckIcon />
                 اعمال فیلتر ها
               </button>

@@ -55,7 +55,7 @@ const ExitSection = () => {
               </button>
               <button
                 onClick={handleConfirmExit}
-                className="bg-primary-primary99 text-[#006000] text-sm font-bold px-6 py-2 rounded"
+                className="bg-primary-primary99 text-key-colors-primary text-sm font-bold px-6 py-2 rounded"
               >
                 بله
               </button>

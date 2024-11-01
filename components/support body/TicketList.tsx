@@ -76,7 +76,7 @@ const TicketList = () => {
                 {ticket.subject}
               </p>
               {ticket.progress === "done" ? (
-                <div className="bg-primary-primary95 text-[#006000] flex flex-row items-center rounded-full text-xs font-medium py-1 px-2 gap-2">
+                <div className="bg-primary-primary95 text-key-colors-primary flex flex-row items-center rounded-full text-xs font-medium py-1 px-2 gap-2">
                   <CheckIcon />
                   <p>حل شده</p>
                 </div>
@@ -95,7 +95,7 @@ const TicketList = () => {
                   : ticket.discription}
                 {ticket.discription.length > 100 && (
                   <span
-                    className="text-[#006000] cursor-pointer"
+                    className="text-key-colors-primary cursor-pointer"
                     onClick={toggleExpand}
                   >
                     {isExpanded ? " کمتر" : " بیشتر"}
@@ -107,7 +107,7 @@ const TicketList = () => {
             <div>
               <p className="flex flex-row items-center text-xs font-medium text-neutral-neutral35 gap-1">
                 {ticket.time}
-                <span className="text-[#006000]">-</span>
+                <span className="text-key-colors-primary">-</span>
                 {ticket.date}
               </p>
             </div>
