@@ -9,6 +9,7 @@ import { useState } from "react";
 import MapIcon from "@/components/OptionBar/MapIcon";
 import ChevronLeftGreen from "@/components/home body/ChevronLeftGreen";
 import Comments from "@/components/comments/Comments";
+import DrawerComponent from "@/components/drawer/DrawerComponent";
 
 const description =
   "ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون  ورم ایپسوم ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون  ورم ایپسوم ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون  ورم ایپسوم ";
@@ -99,7 +100,7 @@ const Product = () => {
             </div>
           </div>
           <div className="w-full bg-neutral-neutral90 h-2" />
-          {/* comments */}
+          {/* Comments */}
           <div className="flex flex-col">
             <div className="flex flex-row justify-between items-start">
               <div className="flex flex-row items-center gap-1 font-bold text-2xs text-key-colors-primary">
@@ -122,8 +123,7 @@ const Product = () => {
               className="relative flex min-h-[168px] w-full"
               style={{ direction: "rtl" }}
             >
-              <div className="absolute left-0 top-0 h-full w-[67px] bg-gradient-to-r from-white to-transparent pointer-events-none z-10"></div>
-
+              <div className="absolute left-0 top-0 h-full w-[67px] bg-gradient-to-r from-white to-transparent pointer-events-none z-10" />
               <div className="flex items-center overflow-x-auto gap-4 flex-row w-full h-full px-1.5">
                 {comments.map((c, index) => (
                   <div key={index}>
@@ -138,6 +138,36 @@ const Product = () => {
                 ))}
               </div>
             </div>
+          </div>
+          <div className=" bg-white sticky bottom-0 z-20 w-full flex flex-col gap-[10px] py-2 px-4">
+            <div className="flex flex-row-reverse gap-2 items-center h-[18px]">
+              <p
+                style={{ direction: "rtl" }}
+                className="text-black font-bold text-xs drop-shadow-2xl flex flex-row"
+              >
+                118,000 <span>تومان</span>
+              </p>
+              <div className="relative flex items-center">
+                <p
+                  className="text-2xs font-medium text-black w-[32px] h-[14px]"
+                  style={{
+                    direction: "rtl",
+                  }}
+                >
+                  128,000
+                </p>
+                <span
+                  className="absolute bg-light-error w-full h-[1.5px]"
+                  style={{ borderRadius: "100px" }}
+                />
+              </div>
+              <div className="relative flex items-center justify-center transform translate-y-0 translate-x-0.5">
+                <p className="text-[6px] absolute -top-2 -left-4 text-white bg-light-error font-bold w-[17px] h-[14px] rounded-full flex flex-row justify-center items-center px-[4px] ">
+                  10 <span>%</span>
+                </p>
+              </div>
+            </div>
+            <DrawerComponent type="product" />
           </div>
         </div>
       </div>

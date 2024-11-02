@@ -40,7 +40,7 @@ const ExitSection = () => {
         <div className="fixed inset-0 flex items-center justify-center bg-neutral-neutral30 bg-opacity-50 z-10">
           <div className="bg-white py-4 px-6 rounded-rounded-9 m-4 w-[358px] min-[170px] flex flex-col justify-center gap-3 shadow-Blur/Overlay">
             <div className="flex flex-col justify-center items-center gap-1">
-              <WarningIcon />
+              <WarningIcon type="exit" />
               <p className="text-sm font-bold text-[#525256]">هشدار</p>
             </div>
             <p className="text-xs font-medium">
