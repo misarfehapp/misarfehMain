@@ -40,7 +40,7 @@ const MisarfehFoods = () => {
       >
         <div className="flex gap-4 flex-row">
           {products.map((p) => (
-            <Link key={p.id} href={`/product`}>
+            
               <ProductCard
                 key={p.id}
                 title={p.title}
@@ -55,7 +55,7 @@ const MisarfehFoods = () => {
                 endPickUp={p.endPickUp}
                 distance={p.distance}
               />
-            </Link>
+           
           ))}
         </div>
       </div>
