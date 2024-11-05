@@ -38,8 +38,8 @@ const Product = () => {
             <Link href={"/homePage"}>
               <ArrowBack />
             </Link>
-            {/* product card */}
           </div>
+          {/* product card */}
           <OrderProductCard
             descriptionTitle="فست فود لاویا"
             restaurantImageSrc={RestaurantImageSrc}

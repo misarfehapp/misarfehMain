@@ -16,6 +16,7 @@ import RangeSlider from "../RangeSlider/RangeSlider";
 import CheckIcon from "../check box/CheckIcon";
 import CrossIcon from "../input/CrossIcon";
 import WarningIcon from "../exit section/WarningIcon";
+import Link from "next/link";
 
 interface DrawerComponentProps {
   type: "filter" | "product";
@@ -172,10 +173,13 @@ const DrawerComponent = ({ type }: DrawerComponentProps) => {
           )}
           <DrawerFooter className="flex justify-center">
             <DrawerClose asChild>
-              <button className="bg-key-colors-primary text-white py-3 px-6 rounded-rounded-7 text-xs flex flex-row gap-2 justify-center items-center">
+              <Link
+                href={"/purchase"}
+                className="bg-key-colors-primary text-white py-3 px-6 rounded-rounded-7 text-xs flex flex-row gap-2 justify-center items-center"
+              >
                 <CheckIcon />
                 {type === "filter" ? "اعمال فیلتر ها" : "متوجه شدم"}
-              </button>
+              </Link>
             </DrawerClose>
             {type === "filter" && (
               <DrawerClose asChild>
