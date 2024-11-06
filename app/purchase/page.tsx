@@ -7,6 +7,19 @@ import ArrowBack from "@/components/user header/ArrowBack";
 import Link from "next/link";
 import { useState } from "react";
 
+const waysOfPay = [
+  {
+    name: "bank",
+    title: "درگاه بانکی",
+    bank: "درگاه بانک سامان",
+  },
+  {
+    name: "wallet",
+    title: "کیف پول",
+    balance: 0,
+  },
+];
+
 const Purchase = () => {
   const [selectedOption, setSelectedOption] = useState<string>("حضوری");
   const [discount, setDiscount] = useState<number>(0);
@@ -17,6 +30,11 @@ const Purchase = () => {
     setIsDiscountExpand((prev: any) => !prev);
   };
   const [discountCode, setDiscountCode] = useState<string>("");
+  const [wayOfPay, setWayOfPay] = useState<string>("bank");
+
+  const handleWayOfPay = (way: string) => {
+    setWayOfPay(way);
+  };
   return (
     <div className="flex justify-center mx-4">
       <div className="w-full max-w-[398px] flex flex-col items-center gap-4">
@@ -117,8 +135,31 @@ const Purchase = () => {
               )}
             </div>
             <div className="w-full bg-neutral-neutral90 h-2" />
-            <div>
-                
+            <div className="flex flex-col gap-2">
+              {waysOfPay.map((way, index) => (
+                <div
+                  key={index}
+                  className=""
+                  onClick={() => handleWayOfPay(way.name)}
+                >
+                  <div
+                    className={`flex flex-row justify-between ring-2 rounded-rounded-7 p-3 text-sm font-medium ${wayOfPay === way.name ? "ring-key-colors-primary bg-primary-primary99 text-key-colors-primary" : "ring-neutral-neutral90 bg-white text-neutral-neutral30"}`}
+                  >
+                    <p>{way.bank ?? `${way.balance.toLocaleString()} موجودی`}</p>
+
+                    <div className="flex flex-row gap-3 items-center">
+                      <p>{way.title}</p>
+                      <div
+                        className={`ring-2 rounded-full w-5 h-5 flex justify-center items-center ${wayOfPay === way.name ? "ring-key-colors-primary" : "ring-neutral-neutral30"}`}
+                      >
+                        <div
+                          className={`w-[10px] h-[10px] rounded-full ${wayOfPay === way.name ? "bg-key-colors-primary" : "bg-white"}`}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
             <div className="w-full bg-neutral-neutral90 h-2" />
           </div>
