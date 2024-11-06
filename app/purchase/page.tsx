@@ -1,4 +1,5 @@
 "use client";
+import ChevronLeftIcon from "@/components/address section/ChevronLeftIcon";
 import DiscountIcon from "@/components/icons/DiscountIcon";
 import OptionBar from "@/components/OptionBar/OptionBar";
 import ProductTracker from "@/components/productTracker/ProductTracker";
@@ -11,7 +12,11 @@ const Purchase = () => {
   const [discount, setDiscount] = useState<number>(0);
   const [productPrice, setProductPrice] = useState<number>(500000);
   const [total, setTotal] = useState<number>(0);
-
+  const [isDiscountExpand, setIsDiscountExpand] = useState<boolean>(false);
+  const handleDiscountExpand = () => {
+    setIsDiscountExpand((prev: any) => !prev);
+  };
+  const [discountCode, setDiscountCode] = useState<string>("");
   return (
     <div className="flex justify-center mx-4">
       <div className="w-full max-w-[398px] flex flex-col items-center gap-4">
@@ -23,7 +28,7 @@ const Purchase = () => {
               <ArrowBack />
             </Link>
           </div>
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
             <div
               className="flex flex-col justify-center gap-1"
               style={{ direction: "rtl" }}
@@ -76,13 +81,44 @@ const Purchase = () => {
               </div>
             </div>
             <div className="w-full bg-neutral-neutral90 h-2" />
-            <div>
-              <div className="flex flex-row items-center gap-3">
-                <p className="underline underline-offset-[5px]">
-                  کد تخفیف دارید؟
-                </p>
-                <DiscountIcon />
+            <div
+              className={` transition-max-height duration-500 ease-in-out ${isDiscountExpand ? "max-h-full" : "max-h-11"}`}
+              onClick={handleDiscountExpand}
+            >
+              <div className="flex flex-row items-center justify-between cursor-pointer">
+                <ChevronLeftIcon
+                  className={`transition-all duration-200 ${isDiscountExpand ? "-rotate-90" : "rotate-0"}`}
+                />
+                <div className="flex flex-row items-center gap-3">
+                  <p className="underline underline-offset-[5px] font-medium text-sm text-neutral-neutral30">
+                    کد تخفیف دارید؟
+                  </p>
+                  <DiscountIcon />
+                </div>
               </div>
+
+              {isDiscountExpand && (
+                <div className="flex flex-col items-center gap-2 w-full mt-2">
+                  <div className="flex flex-row justify-between items-center w-full">
+                    <input
+                      type="text"
+                      placeholder="کد تخفیف"
+                      className="px-3 py-2 border text-right w-44 rounded-md border-neutral-neutral80 focus:outline-none focus:ring-2 focus:ring-primary"
+                      onChange={(e) => setDiscountCode(e.target.value)}
+                    />
+                    <p className="text-neutral-neutral30 font-medium text-sm">
+                      :کد تخفیف خود را وارد کنید
+                    </p>
+                  </div>
+                  <button className="w-28 mt-2 py-2 bg-primary text-white bg-key-colors-primary text-sm font-medium rounded-md">
+                    اعمال کد
+                  </button>
+                </div>
+              )}
+            </div>
+            <div className="w-full bg-neutral-neutral90 h-2" />
+            <div>
+                
             </div>
             <div className="w-full bg-neutral-neutral90 h-2" />
           </div>
