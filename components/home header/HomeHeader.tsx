@@ -19,6 +19,7 @@ const HomeHeader = () => {
       </div>
       <div className="flex items-center justify-center">
         <ProductTracker
+          type="homepage"
           title="سورپرایز صبحانه"
           address="فست فود لاویا - بلوار بهشتی , 5.6 کیلومتر"
           count={2}

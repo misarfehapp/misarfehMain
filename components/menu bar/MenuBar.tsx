@@ -35,7 +35,7 @@ const MenuBar = () => {
 
   return (
     <nav
-      className={`${path === "/product" && "hidden"} bg-neutral-neutral20 mx-4 bottom-3 sticky  mt-5 py-4 rounded-rounded-9 flex flex-row-reverse justify-around z-20`}
+      className={`${path === "/product" || (path === "/purchase" && "hidden")} bg-neutral-neutral20 mx-4 bottom-3 sticky  mt-5 py-4 rounded-rounded-9 flex flex-row-reverse justify-around z-20`}
     >
       {links.map((link, index) => (
         <Link

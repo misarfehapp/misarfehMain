@@ -38,7 +38,7 @@ const sections = [
 
 const UserSelection = () => {
   return (
-    <div>
+    <div className="w-full">
       <div className="w-full h-[6px] bg-neutral-neutral90" />
       {sections.map((section, index) => (
         <Link
@@ -57,9 +57,9 @@ const UserSelection = () => {
       ))}
       <ExitSection />
       <div className="w-full h-[6px] bg-neutral-neutral90" />
-      <div className="flex flex-row items-center my-16 justify-between mx-6">
-        <Segment type="charity" helpedMoney={34000}/>
-        <Segment type="savedMoney" savedMoney={300000}/>
+      <div className="flex flex-row items-center my-16 justify-between">
+        <Segment type="charity" helpedMoney={34000} />
+        <Segment type="savedMoney" savedMoney={300000} />
       </div>
     </div>
   );

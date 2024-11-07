@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import ChevronLeftIcon from "../address section/ChevronLeftIcon";
+import { usePathname } from "next/navigation";
 
 const FoodSensitivities = () => {
   const [selectedItems, setSelectedItems] = useState<string[]>([
@@ -27,19 +28,24 @@ const FoodSensitivities = () => {
     setSelectedItems(selectedItems.filter((i) => i !== item));
   };
 
-  const filteredItems = allItems.filter((item) =>
-    item.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredItems = allItems.filter(
+    (item) =>
+      !selectedItems.includes(item) &&
+      item.toLowerCase().includes(searchQuery.toLowerCase())
   );
+  const path = usePathname();
 
   return (
-    <div className="w-[398px]">
+    <div className="w-full">
       {/* Title */}
-      <p
-        style={{ direction: "rtl" }}
-        className="text-sm font-bold text-neutral-neutral30"
-      >
-        حساسیت های غذایی
-      </p>
+      {path !== "/purchase" && (
+        <p
+          style={{ direction: "rtl" }}
+          className="text-sm font-bold text-neutral-neutral30"
+        >
+          حساسیت های غذایی
+        </p>
+      )}
 
       <div className="flex flex-col gap-2 mt-4" style={{ direction: "rtl" }}>
         {/* Dropdown and Selected Items */}

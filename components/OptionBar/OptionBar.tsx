@@ -23,7 +23,7 @@ const OptionBar = ({ type, setSelectedOption }: OptionBarProps) => {
   return (
     <div className="w-full h-[52px] justify-around bg-neutral-neutral90 rounded-rounded-13 flex items-center relative">
       <motion.div
-        className="absolute w-[159px] h-[38px] bg-white rounded-rounded-12 ml-[10px]"
+        className="absolute w-[45%] h-[38px] bg-white rounded-rounded-12 ml-[10px]"
         animate={{
           left:
             type === "support"
