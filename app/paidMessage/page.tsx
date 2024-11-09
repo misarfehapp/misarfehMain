@@ -1,9 +1,12 @@
 import SuccessPopUp from "@/components/success pop-up/SuccessPopUp";
+import { Suspense } from "react";
 
 const PaidMessage = () => {
   return (
     <div className="flex justify-center items-center h-screen">
-      <SuccessPopUp trackingCode={98276} />
+      <Suspense>
+        <SuccessPopUp trackingCode={98276} />
+      </Suspense>
     </div>
   );
 };
