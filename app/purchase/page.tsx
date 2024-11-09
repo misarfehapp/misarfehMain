@@ -50,7 +50,6 @@ const Purchase = () => {
   const [discountCode, setDiscountCode] = useState<string>("");
   const [showDiscountMessage, setShowDiscountMessage] =
     useState<boolean>(false);
-  const [discountMessage, setDiscountMessage] = useState<string>("");
   const [isDiscountValid, setIsDiscountValid] = useState<boolean | null>(null);
   const [isDiscountApplied, setIsDiscountApplied] = useState(false);
 
@@ -271,6 +270,15 @@ const Purchase = () => {
               )}
             </div>
             <div className="w-full bg-neutral-neutral90 h-2" />
+          </div>
+
+          <div className=" bg-white outline-none sticky bottom-0 z-20 w-full flex flex-col gap-[10px] py-2 px-4">
+            <Link
+              href={`/paidMessage?discount=${discount}&productPrice=${productPrice}&total=${total}`}
+              className="text-center bg-key-colors-primary py-3 px-6 rounded-rounded-7 text-white text-xs font-medium"
+            >
+              تکمیل سفارش
+            </Link>
           </div>
         </div>
       </div>

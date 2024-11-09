@@ -10,14 +10,14 @@ const LocationIcon = (
     {...props}
   >
     <path
-      stroke="#605E5E"
+      stroke={props.stroke || "#605E5E"}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}
       d="M19.25 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0Z"
     />
     <path
-      stroke="#605E5E"
+      stroke={props.stroke || "#605E5E"}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}

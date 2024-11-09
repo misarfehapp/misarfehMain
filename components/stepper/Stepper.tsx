@@ -31,9 +31,9 @@ const Stepper = ({ currentStep, progress }: StepperProps) => {
             <div
               className={`${
                 index < currentStep
-                  ? "bg-light-primary text-white"
+                  ? "bg-key-colors-primary text-white"
                   : "bg-neutral-neutral90 text-neutral-neutral30"
-              } flex justify-center items-center w-8 h-8 p-2 rounded-rounded-7`}
+              } flex justify-center font-bold items-center w-8 h-8 p-2 rounded-rounded-7`}
             >
               {s.number}
             </div>
@@ -41,11 +41,11 @@ const Stepper = ({ currentStep, progress }: StepperProps) => {
             {index < StepsToReceive.length - 1 && (
               <div className="bg-neutral-neutral80 h-[4px] w-[86px] rounded-full flex flex-row-reverse">
                 {index < currentStep - 1 && (
-                  <div className="bg-light-primary w-full h-full rounded-full" />
+                  <div className="bg-key-colors-primary w-full h-full rounded-full" />
                 )}
                 {index === currentStep - 1 && (
                   <div
-                    className="bg-light-primary h-full rounded-full"
+                    className="bg-key-colors-primary h-full rounded-full"
                     style={{ width: `${progress}%` }} // Dynamic width based on current step
                   />
                 )}
@@ -57,7 +57,7 @@ const Stepper = ({ currentStep, progress }: StepperProps) => {
       <div className="flex flex-row-reverse mt-2 relative">
         {StepsToReceive.map((s, index) => (
           <p
-            className={`text-2xs absolute ${index < currentStep ? "text-light-primary" : "text-neutral-neutral30"} ${index === 2 && "-left-[6px]"} ${index === 1 && "left-[127px]"} ${index === 0 && "-right-[6px]"}`}
+            className={`text-2xs font-bold absolute ${index < currentStep ? "text-key-colors-primary" : "text-neutral-neutral30"} ${index === 2 && "-left-[6px]"} ${index === 1 && "left-[127px]"} ${index === 0 && "-right-[6px]"}`}
             key={index}
           >
             {s.step}
