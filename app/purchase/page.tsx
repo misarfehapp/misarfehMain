@@ -274,7 +274,7 @@ const Purchase = () => {
 
           <div className=" bg-white outline-none sticky bottom-0 z-20 w-full flex flex-col gap-[10px] py-2 px-4">
             <Link
-              href={`/paidMessage?discount=${discount}&productPrice=${productPrice}&total=${total}`}
+              href={`/paidMessage?discount=${discount}&productPrice=${productPrice}&total=${total}&selectedOption=${selectedOption}`}
               className="text-center bg-key-colors-primary py-3 px-6 rounded-rounded-7 text-white text-xs font-medium"
             >
               تکمیل سفارش

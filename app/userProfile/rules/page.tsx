@@ -22,7 +22,7 @@ const RulesPage = () => {
         {" "}
         <div>
           {/* header */}
-          <div className="flex flex-row justify-end mt-3 min-h-16 items-center border-b border-b-[#C7C6CA] px-5 gap-[10px]">
+          <div className="flex flex-row justify-end min-h-16 items-center border-b border-b-[#C7C6CA] px-5 gap-[10px]">
             <p className="text-base font-medium text-[#49454F]">
               قوانین و شرایط
             </p>

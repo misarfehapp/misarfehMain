@@ -1,9 +1,10 @@
 interface StepperProps {
   currentStep: number;
   progress: number;
+  selectedOption: string;
 }
 
-const StepsToReceive = [
+const StepsToReceive = (selectedOption: string) => [
   {
     step: "تایید رستوران",
     number: 1,
@@ -13,16 +14,16 @@ const StepsToReceive = [
     number: 2,
   },
   {
-    step: "تحویل پیک",
+    step: selectedOption === "پیک" ? "تحویل پیک" : "آماده برداشت حضوری",
     number: 3,
   },
 ];
 
-const Stepper = ({ currentStep, progress }: StepperProps) => {
+const Stepper = ({ currentStep, progress, selectedOption }: StepperProps) => {
   return (
     <div className="w-[328.23px] h-[54px]">
       <div className="flex flex-row-reverse justify-center items-center gap-3">
-        {StepsToReceive.map((s, index) => (
+        {StepsToReceive(selectedOption).map((s, index) => (
           <div
             className="flex flex-row-reverse justify-center items-center gap-3"
             key={index}
@@ -38,7 +39,7 @@ const Stepper = ({ currentStep, progress }: StepperProps) => {
               {s.number}
             </div>
             {/* progress bar */}
-            {index < StepsToReceive.length - 1 && (
+            {index < StepsToReceive(selectedOption).length - 1 && (
               <div className="bg-neutral-neutral80 h-[4px] w-[86px] rounded-full flex flex-row-reverse">
                 {index < currentStep - 1 && (
                   <div className="bg-key-colors-primary w-full h-full rounded-full" />
@@ -55,7 +56,7 @@ const Stepper = ({ currentStep, progress }: StepperProps) => {
         ))}
       </div>
       <div className="flex flex-row-reverse mt-2 relative">
-        {StepsToReceive.map((s, index) => (
+        {StepsToReceive(selectedOption).map((s, index) => (
           <p
             className={`text-2xs font-bold absolute ${index < currentStep ? "text-key-colors-primary" : "text-neutral-neutral30"} ${index === 2 && "-left-[6px]"} ${index === 1 && "left-[127px]"} ${index === 0 && "-right-[6px]"}`}
             key={index}

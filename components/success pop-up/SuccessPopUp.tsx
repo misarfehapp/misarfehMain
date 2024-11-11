@@ -16,6 +16,7 @@ const SuccessPopUp = ({ trackingCode }: SuccessPopUpProps) => {
   const discount = searchParams.get("discount");
   const productPrice = searchParams.get("productPrice");
   const total = searchParams.get("total");
+  const selectedOption = searchParams.get("selectedOption");
   useEffect(() => {
     if (seconds > 0) {
       const timer = setTimeout(() => setSeconds(seconds - 1), 1000);
@@ -23,7 +24,7 @@ const SuccessPopUp = ({ trackingCode }: SuccessPopUpProps) => {
     } else {
       // Handle redirect or other logic here when the timer reaches 0
       router.push(
-        `/orderTracking?trackingCode=${trackingCode}&discount=${discount}&productPrice=${productPrice}&total=${total}`
+        `/orderTracking?trackingCode=${trackingCode}&discount=${discount}&productPrice=${productPrice}&total=${total}&selectedOption=${selectedOption}`
       );
     }
   }, [seconds]);
@@ -51,7 +52,7 @@ const SuccessPopUp = ({ trackingCode }: SuccessPopUpProps) => {
           کد پیگیری: <span className="font-bold">{trackingCode}</span>
         </p>
         <Link
-          href={`/orderTracking?trackingCode=${trackingCode}&discount=${discount}&productPrice=${productPrice}&total=${total}`}
+          href={`/orderTracking?trackingCode=${trackingCode}&discount=${discount}&productPrice=${productPrice}&total=${total}&selectedOption=${selectedOption}`}
           className="w-[194px] rounded-rounded-7 bg-key-colors-primary text-white py-3 px-6 text-xs font-medium text-center"
         >
           متوجه شدم

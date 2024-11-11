@@ -4,7 +4,7 @@ import UserSelection from "@/components/user selection/UserSelection";
 const UserPage = () => {
   return (
     <div className="flex justify-center py-8 px-4">
-      <div className="w-full max-w-[398px] flex flex-col items-center gap-4">
+      <div className="w-full max-w-[398px] flex flex-col  gap-4">
         {" "}
         {/* header */}
         <div className="my-6 ">

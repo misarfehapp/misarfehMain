@@ -28,7 +28,11 @@ const OrderTrackingBody = () => {
   const discount = searchParams.get("discount");
   const productPrice = searchParams.get("productPrice");
   const total = searchParams.get("total");
+  const selectedOption = searchParams.get("selectedOption");
   const [isRulesExpand, setIsRulesExpand] = useState<boolean>(false);
+
+  const currentStep = 1; // Replace this with dynamic value if needed
+
   return (
     <div className="flex justify-center mx-4">
       <div className="w-full max-w-[398px] flex flex-col items-center gap-4">
@@ -68,7 +72,11 @@ const OrderTrackingBody = () => {
               </p>
             </div>
             <div className="flex flex-col items-center gap-3">
-              <Stepper currentStep={1} progress={50} />
+              <Stepper
+                currentStep={currentStep}
+                progress={50}
+                selectedOption={selectedOption ?? ""}
+              />
               <ProductTracker
                 type="homepage"
                 title="سورپرایز صبحانه"
@@ -170,15 +178,22 @@ const OrderTrackingBody = () => {
                   </p>
                 )}
               </div>
-              <div className="w-full flex flex-row items-center">
-                <div className="flex flex-row items-center gap-2 justify-center py-3 px-6 w-full rounded-rounded-7 text-xs font-medium text-neutral-neutral30">
+              <div className="w-full flex flex-row items-center mb-5">
+                <button
+                  className={`flex flex-row items-center gap-2 justify-center py-3 px-6 w-full rounded-rounded-7 text-xs font-medium ${currentStep > 1 ? "text-[#999999]" : "text-neutral-neutral30"}`}
+                  disabled={currentStep > 1}
+                  onClick={() => console.log("hi")}
+                >
                   <p>لغو رزرو</p>
-                  <CrossIcon stroke="#484646" />
-                </div>
-                <div className="flex flex-row items-center gap-2 justify-center py-3 px-6 w-full rounded-rounded-7 text-xs font-medium text-key-colors-primary bg-neutral-neutral95">
+                  <CrossIcon stroke={currentStep > 1 ? "#999999" : "#484646"} />
+                </button>
+                <Link
+                  href={"userProfile/support"}
+                  className="flex flex-row items-center gap-2 justify-center py-3 px-6 w-full rounded-rounded-7 text-xs font-medium text-key-colors-primary bg-neutral-neutral95"
+                >
                   <p>پشتیبانی</p>
                   <HeadPhoneIcon />
-                </div>
+                </Link>
               </div>
             </div>
           </div>
