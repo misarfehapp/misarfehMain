@@ -11,7 +11,7 @@ const CrossIcon = (
     {...props}
   >
     <path
-      stroke={props.stroke || "#880808"}
+      stroke={props.stroke || "#ba1a1a"}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={1.5}

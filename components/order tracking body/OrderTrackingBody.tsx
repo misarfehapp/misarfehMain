@@ -12,6 +12,7 @@ import ChevronLeftIcon from "@/components/user selection/ChevronLeftIcon";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
+import CheckIcon from "../check box/CheckIcon";
 
 const restaurantInfo = {
   name: "فست فود لاویا",
@@ -31,7 +32,7 @@ const OrderTrackingBody = () => {
   const selectedOption = searchParams.get("selectedOption");
   const [isRulesExpand, setIsRulesExpand] = useState<boolean>(false);
 
-  const currentStep = 1; // Replace this with dynamic value if needed
+  const currentStep = 3; // Replace this with dynamic value if needed
 
   return (
     <div className="flex justify-center mx-4">
@@ -145,56 +146,82 @@ const OrderTrackingBody = () => {
                 <LocationIcon />
               </div>
               {/* rules */}
-              <div className="flex flex-col gap-2" style={{ direction: "rtl" }}>
-                <p className="font-bold text-sm text-neutral-neutral30">
-                  قوانین لغو رزرو
-                </p>
-                {!isRulesExpand ? (
-                  cancelRules.length > 150 ? (
+              {currentStep < 3 && (
+                <div
+                  className="flex flex-col gap-2"
+                  style={{ direction: "rtl" }}
+                >
+                  <p className="font-bold text-sm text-neutral-neutral30">
+                    قوانین لغو رزرو
+                  </p>
+                  {!isRulesExpand ? (
+                    cancelRules.length > 150 ? (
+                      <p className="text-xs font-medium text-neutral-neutral35">
+                        {cancelRules.slice(0, 150)}
+                        {"..."}
+                        <span
+                          className="text-key-colors-primary"
+                          onClick={() => setIsRulesExpand(!isRulesExpand)}
+                        >
+                          بیشتر
+                        </span>
+                      </p>
+                    ) : (
+                      <p className="text-xs font-medium text-neutral-neutral35">
+                        {cancelRules}
+                      </p>
+                    )
+                  ) : (
                     <p className="text-xs font-medium text-neutral-neutral35">
-                      {cancelRules.slice(0, 150)}
-                      {"..."}
+                      {cancelRules}{" "}
                       <span
                         className="text-key-colors-primary"
                         onClick={() => setIsRulesExpand(!isRulesExpand)}
                       >
-                        بیشتر
+                        کمتر
                       </span>
                     </p>
-                  ) : (
-                    <p className="text-xs font-medium text-neutral-neutral35">
-                      {cancelRules}
-                    </p>
-                  )
-                ) : (
-                  <p className="text-xs font-medium text-neutral-neutral35">
-                    {cancelRules}{" "}
-                    <span
-                      className="text-key-colors-primary"
-                      onClick={() => setIsRulesExpand(!isRulesExpand)}
-                    >
-                      کمتر
-                    </span>
-                  </p>
-                )}
-              </div>
-              <div className="w-full flex flex-row items-center mb-5">
-                <button
-                  className={`flex flex-row items-center gap-2 justify-center py-3 px-6 w-full rounded-rounded-7 text-xs font-medium ${currentStep > 1 ? "text-[#999999]" : "text-neutral-neutral30"}`}
-                  disabled={currentStep > 1}
-                  onClick={() => console.log("hi")}
-                >
-                  <p>لغو رزرو</p>
-                  <CrossIcon stroke={currentStep > 1 ? "#999999" : "#484646"} />
-                </button>
-                <Link
-                  href={"userProfile/support"}
-                  className="flex flex-row items-center gap-2 justify-center py-3 px-6 w-full rounded-rounded-7 text-xs font-medium text-key-colors-primary bg-neutral-neutral95"
-                >
-                  <p>پشتیبانی</p>
-                  <HeadPhoneIcon />
-                </Link>
-              </div>
+                  )}
+                </div>
+              )}
+              {currentStep < 3 ? (
+                <div className="w-full flex flex-row items-center mb-5">
+                  <button
+                    className={`flex flex-row items-center gap-2 justify-center py-3 px-6 w-full rounded-rounded-7 text-xs font-medium ${currentStep > 1 ? "text-[#999999]" : "text-neutral-neutral30"}`}
+                    disabled={currentStep > 1}
+                    onClick={() => console.log("hi")}
+                  >
+                    <p>لغو رزرو</p>
+                    <CrossIcon
+                      stroke={currentStep > 1 ? "#999999" : "#484646"}
+                    />
+                  </button>
+                  <Link
+                    href={"userProfile/support"}
+                    className="flex flex-row items-center gap-2 justify-center py-3 px-6 w-full rounded-rounded-7 text-xs font-medium text-key-colors-primary bg-neutral-neutral95"
+                  >
+                    <p>پشتیبانی</p>
+                    <HeadPhoneIcon />
+                  </Link>
+                </div>
+              ) : (
+                <div className="w-full flex flex-col justify-center mb-5">
+                  <Link
+                    href={"/homePage"}
+                    className="w-full flex flex-row justify-center items-center bg-key-colors-primary text-white rounded-rounded-7 text-center text-xs font-medium gap-2 py-3 px-6"
+                  >
+                    <p>سفارش را تحویل گرفته ام</p>
+                    <CheckIcon />
+                  </Link>
+                  <Link
+                    className="w-full flex flex-row justify-center items-center bg-white text-light-error rounded-rounded-7 text-center text-xs font-medium gap-2 py-3 px-6"
+                    href={"/userProfile/support"}
+                  >
+                    <p>!سفارش را تحویل نگرفته ام</p>
+                    <CrossIcon />
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </div>
