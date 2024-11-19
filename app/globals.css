@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "DanaFaNum";
+  src: url("/fonts/dana-fanum-regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@layer base {
+  body {
+    @apply font-danafanum;
+  }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    @apply appearance-none; /* Apply Tailwind's utility class to remove spin buttons */
+    margin: 0;
+  }
+
+  input[type="number"] {
+    @apply appearance-none; /* Removes spin buttons in Firefox */
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    pointer-events: auto;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    -webkit-appearance: none;
+    @apply bg-transparent;
+  }
+  :root {
+    --radius: 0.5rem;
+  }
+}
+
+@import 'leaflet/dist/leaflet.css';
+
+.leaflet-container {
+  direction: ltr;
+}
+
+.leaflet-control-zoom {
+  border: none !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+  background-color: white !important;
+  color: #252629 !important;
+}
