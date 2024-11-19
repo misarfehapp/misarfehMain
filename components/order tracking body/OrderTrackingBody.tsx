@@ -207,7 +207,7 @@ const OrderTrackingBody = () => {
               ) : (
                 <div className="w-full flex flex-col justify-center mb-5">
                   <Link
-                    href={"/orderGreeting"}
+                    href={"/homePage"}
                     className="w-full flex flex-row justify-center items-center bg-key-colors-primary text-white rounded-rounded-7 text-center text-xs font-medium gap-2 py-3 px-6"
                   >
                     <p>سفارش را تحویل گرفته ام</p>

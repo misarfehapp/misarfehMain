@@ -14,11 +14,8 @@ const ExploreHeader = () => {
       </div>
       <div className="flex items-center justify-between w-full flex-row-reverse">
         <SearchBar isHomePage={false} />
-        {/* filter */}
         <DrawerComponent type="filter" />
-        <div className="w-[52px] h-[50.5px] ring-2 ring-neutral-neutral80 rounded-rounded-9 py-2 px-4 flex justify-center items-center">
-          <LocationIcon />
-        </div>
+        <DrawerComponent type="location" />
       </div>
     </div>
   );

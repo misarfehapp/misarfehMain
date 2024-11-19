@@ -9,7 +9,7 @@ interface RangeSliderProps {
   max: number;
   step: number;
   priceCap: number;
-  type: "price" | "time"; // Added type prop
+  type: "price" | "time" | "distance"; // Added distance type
 }
 
 const RangeSlider = ({
@@ -19,7 +19,7 @@ const RangeSlider = ({
   max,
   step,
   priceCap,
-  type, // Destructure type prop
+  type,
 }: RangeSliderProps) => {
   const progressRef = useRef<HTMLDivElement | null>(null);
   const minThumbRef = useRef<HTMLDivElement | null>(null);
@@ -34,12 +34,11 @@ const RangeSlider = ({
     } else if (type === "time") {
       const hours = Math.floor(value / 60);
       const minutes = value % 60;
-
-      // Return time in "HH:MM" format, zero-padded
       const formattedHours = String(hours).padStart(2, "0");
       const formattedMinutes = String(minutes).padStart(2, "0");
-
       return `${formattedHours}:${formattedMinutes}`;
+    } else if (type === "distance") {
+      return `${value} کیلومتر`; // Format for distance
     }
     return value.toString();
   };
@@ -126,7 +125,7 @@ const RangeSlider = ({
           className="absolute -top-3.5 z-10 pointer-events-none"
         >
           <CustomThumb />
-          <div className="absolute -bottom-9 left-1/2 transform -translate-x-1/2 text-center bg-gray-200 py-0.5 px-2  min-w-[50px] h-[24px] text-neutral-neutral30 rounded-rounded-6">
+          <div className="absolute -bottom-9 left-1/2 transform -translate-x-1/2 text-center bg-gray-200 py-0.5 px-2  min-w-[70px] h-[24px] text-neutral-neutral30 rounded-rounded-6">
             <div
               aria-hidden="true"
               className="absolute inset-0 left-[19px] -top-1 h-[10px] w-[10px] transform rotate-45 bg-gray-200 "
@@ -139,7 +138,7 @@ const RangeSlider = ({
           className="absolute -top-3.5 z-10 pointer-events-none"
         >
           <CustomThumb />
-          <div className="absolute -bottom-9 left-1/2 transform -translate-x-1/2 text-center bg-gray-200 py-0.5 px-2 w-[50px] h-[24px] text-neutral-neutral30 rounded-rounded-6">
+          <div className="absolute -bottom-9 left-1/2 transform -translate-x-1/2 text-center bg-gray-200 py-0.5 px-2 min-w-[70px] h-[24px] text-neutral-neutral30 rounded-rounded-6">
             <div
               aria-hidden="true"
               className="absolute inset-0 left-[19px] -top-1 h-[10px] w-[10px] transform rotate-45 bg-gray-200 "

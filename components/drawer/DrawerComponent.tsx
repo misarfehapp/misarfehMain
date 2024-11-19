@@ -17,9 +17,11 @@ import CheckIcon from "../check box/CheckIcon";
 import CrossIcon from "../input/CrossIcon";
 import WarningIcon from "../exit section/WarningIcon";
 import Link from "next/link";
+import LocationIcon from "../explore header/LocationIcon";
+import LocationSlider from "../RangeSlider/LocationSlider";
 
 interface DrawerComponentProps {
-  type: "filter" | "product";
+  type: "filter" | "product" | "location";
 }
 
 const surpriseKinds = ["نان و شیرینی", "سبزیجات", "ناهار", "سایر"];
@@ -49,6 +51,10 @@ const DrawerComponent = ({ type }: DrawerComponentProps) => {
             <div className="w-[50.5px] h-[50.5px] ring-2 ring-neutral-neutral80 rounded-rounded-9 py-2 px-4 flex justify-center items-center">
               <FilterIcon />
             </div>
+          ) : type === "location" ? (
+            <div className="w-[52px] h-[50.5px] ring-2 ring-neutral-neutral80 rounded-rounded-9 py-2 px-4 flex justify-center items-center">
+              <LocationIcon />
+            </div>
           ) : type === "product" ? (
             <div className="text-center bg-key-colors-primary py-3 px-6 rounded-rounded-7 text-white text-xs font-medium">
               خرید محصول
@@ -65,6 +71,7 @@ const DrawerComponent = ({ type }: DrawerComponentProps) => {
             <div className="flex flex-col gap-1">
               <DrawerTitle className="text-[14px] text-right flex flex-col justify-center gap-4">
                 {type === "filter" && "فیلترها"}
+                {type === "location" && "جستجوی مکان"}
                 {type === "product" && "دانستنی های قبل از خرید!"}
                 {type === "filter" && (
                   <div className="w-full h-[3px] bg-neutral-neutral90" />
@@ -73,6 +80,8 @@ const DrawerComponent = ({ type }: DrawerComponentProps) => {
               {type === "filter" ? (
                 <></>
               ) : type === "product" ? (
+                <></>
+              ) : type === "location" ? (
                 <></>
               ) : (
                 <DrawerDescription
@@ -86,6 +95,36 @@ const DrawerComponent = ({ type }: DrawerComponentProps) => {
               )}
             </div>
           </DrawerHeader>
+          {type === "location" && (
+            <div className="flex flex-col justify-center gap-4 px-4">
+              {/* Search Input */}
+              <div className="mb-4">
+                <input
+                  type="text"
+                  placeholder="جستجو در نقشه..."
+                  className="w-full p-3 rounded-lg border border-gray-300 text-right"
+                />
+              </div>
+
+              {/* Range Slider */}
+              <div className="mb-4">
+                <p className="text-sm font-bold text-neutral-neutral30 mb-2 text-right">
+                  محدوده جستجو
+                </p>
+                <div style={{ direction: "ltr" }}>
+                  <LocationSlider
+                    initial={5}
+                    min={0}
+                    max={20}
+                    step={1}
+                    onChange={(value) => {
+                      console.log(`Search radius: ${value}km`);
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          )}
           {type === "filter" && (
             <div className="flex flex-col justify-center gap-4">
               <div className="flex flex-col justify-center gap-3">
@@ -178,7 +217,9 @@ const DrawerComponent = ({ type }: DrawerComponentProps) => {
                 className="bg-key-colors-primary text-white py-3 px-6 rounded-rounded-7 text-xs flex flex-row gap-2 justify-center items-center"
               >
                 <CheckIcon />
-                {type === "filter" ? "اعمال فیلتر ها" : "متوجه شدم"}
+                {type === "filter" && "اعمال فیلتر ها"}
+                {type === "location" && "تایید موقعیت"}
+                {type === "product" && "متوجه شدم"}
               </Link>
             </DrawerClose>
             {type === "filter" && (
