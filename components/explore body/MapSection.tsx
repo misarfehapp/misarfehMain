@@ -53,7 +53,6 @@ const MapController = ({
   const map = useMap();
 
   useEffect(() => {
-    // Only set view once on initial mount
     if (map && !map.getZoom()) {
       map.setView(center, 15);
     }
@@ -65,7 +64,7 @@ const MapController = ({
     return () => {
       map.off("zoomend");
     };
-  }, [map, onZoomEnd]);
+  }, [map, center, onZoomEnd]);
 
   return null;
 };
@@ -74,11 +73,9 @@ const MapSection = () => {
   const [currentLocation, setCurrentLocation] = useState<[number, number]>([
     29.5926, 52.5836,
   ]);
-  const [indicatorLocation, setIndicatorLocation] = useState<[number, number]>([
-    29.5926, 52.5836,
-  ]);
   const [currentZoom, setCurrentZoom] = useState(15);
   const mapRef = useRef(null);
+  const createRoot = useCreateRoot();
 
   // Sample restaurant data
   const restaurants: Restaurant[] = [
@@ -98,7 +95,6 @@ const MapSection = () => {
             position.coords.longitude,
           ];
           setCurrentLocation(newLocation);
-          setIndicatorLocation(newLocation);
           if (mapRef.current) {
             (mapRef.current as any).setView(newLocation, 15);
           }
@@ -113,30 +109,7 @@ const MapSection = () => {
   };
 
   const handleMapMoveEnd = (center: [number, number]) => {
-    setCurrentLocation(center); // Update the current location when map moves
-  };
-
-  // Function to create markers based on zoom level
-  const createMarkers = () => {
-    if (currentZoom >= 14) {
-      // Show individual restaurant markers
-      return restaurants.map((restaurant) => (
-        <Marker
-          key={restaurant.id}
-          position={restaurant.position}
-          icon={createCustomMarker(PlaceIndicator)}
-        />
-      ));
-    } else {
-      // Show clustered marker with count
-      const centerPosition: [number, number] = [29.5926, 52.5836]; // Calculate center of all restaurants
-      return (
-        <Marker
-          position={centerPosition}
-          icon={createCustomMarker(PlaceAmount, { amount: restaurants.length })}
-        />
-      );
-    }
+    setCurrentLocation(center);
   };
 
   // Function to create a custom marker using React components
@@ -145,7 +118,6 @@ const MapSection = () => {
     props = {}
   ) => {
     const container = document.createElement("div");
-    const createRoot = useCreateRoot();
     const render = createRoot(container);
     render(<Component {...props} />);
 
@@ -155,6 +127,27 @@ const MapSection = () => {
       iconSize: [40, 40],
       iconAnchor: [20, 20],
     });
+  };
+
+  // Function to create markers based on zoom level
+  const createMarkers = () => {
+    if (currentZoom >= 14) {
+      return restaurants.map((restaurant) => (
+        <Marker
+          key={restaurant.id}
+          position={restaurant.position}
+          icon={createCustomMarker(PlaceIndicator)}
+        />
+      ));
+    } else {
+      const centerPosition: [number, number] = [29.5926, 52.5836];
+      return (
+        <Marker
+          position={centerPosition}
+          icon={createCustomMarker(PlaceAmount, { amount: restaurants.length })}
+        />
+      );
+    }
   };
 
   const handleZoomEnd = (zoom: number) => {
@@ -179,6 +172,7 @@ const MapSection = () => {
         />
 
         <MapController center={currentLocation} onZoomEnd={handleZoomEnd} />
+        <MapEventHandler onMoveEnd={handleMapMoveEnd} />
 
         {/* Restaurant Markers */}
         {createMarkers()}
