@@ -5,7 +5,11 @@ import ShoppingCartIcon from "../home header/ShoppingCartIcon";
 import FilterIcon from "./FilterIcon";
 import LocationIcon from "./LocationIcon";
 
-const ExploreHeader = () => {
+interface ExploreHeaderProps {
+  setSearchRadius: (radius: number) => void;
+}
+
+const ExploreHeader = ({ setSearchRadius }: ExploreHeaderProps) => {
   return (
     <div className="flex flex-col justify-center w-full gap-3">
       <div className="flex flex-row-reverse items-center justify-between">
@@ -15,7 +19,10 @@ const ExploreHeader = () => {
       <div className="flex items-center justify-between w-full flex-row-reverse">
         <SearchBar isHomePage={false} />
         <DrawerComponent type="filter" />
-        <DrawerComponent type="location" />
+        <DrawerComponent 
+          type="location" 
+          onRadiusChange={setSearchRadius}
+        />
       </div>
     </div>
   );

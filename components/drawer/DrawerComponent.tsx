@@ -22,13 +22,15 @@ import LocationSlider from "../RangeSlider/LocationSlider";
 
 interface DrawerComponentProps {
   type: "filter" | "product" | "location";
+  onRadiusChange?: (radius: number) => void;
 }
 
 const surpriseKinds = ["نان و شیرینی", "سبزیجات", "ناهار", "سایر"];
 
-const DrawerComponent = ({ type }: DrawerComponentProps) => {
+const DrawerComponent = ({ type, onRadiusChange }: DrawerComponentProps) => {
   const [selectedDay, setSelectedDay] = useState<string>("امروز");
   const [selectedSurprises, setSelectedSurprises] = useState<string[]>([]); // Initialize with empty array
+  const [currentRadius, setCurrentRadius] = useState<number>(5);
 
   const changeDayHandler = () => {
     selectedDay === "امروز" ? setSelectedDay("فردا") : setSelectedDay("امروز");
@@ -42,6 +44,12 @@ const DrawerComponent = ({ type }: DrawerComponentProps) => {
     );
   };
   console.log(selectedSurprises);
+
+  const handleLocationConfirm = () => {
+    if (type === "location" && onRadiusChange) {
+      onRadiusChange(currentRadius);
+    }
+  };
 
   return (
     <div>
@@ -118,7 +126,7 @@ const DrawerComponent = ({ type }: DrawerComponentProps) => {
                     max={20}
                     step={1}
                     onChange={(value) => {
-                      console.log(`Search radius: ${value}km`);
+                      setCurrentRadius(value);
                     }}
                   />
                 </div>
@@ -212,15 +220,15 @@ const DrawerComponent = ({ type }: DrawerComponentProps) => {
           )}
           <DrawerFooter className="flex justify-center">
             <DrawerClose asChild>
-              <Link
-                href={"/purchase"}
+              <button
+                onClick={handleLocationConfirm}
                 className="bg-key-colors-primary text-white py-3 px-6 rounded-rounded-7 text-xs flex flex-row gap-2 justify-center items-center"
               >
                 <CheckIcon />
                 {type === "filter" && "اعمال فیلتر ها"}
                 {type === "location" && "تایید موقعیت"}
                 {type === "product" && "متوجه شدم"}
-              </Link>
+              </button>
             </DrawerClose>
             {type === "filter" && (
               <DrawerClose asChild>

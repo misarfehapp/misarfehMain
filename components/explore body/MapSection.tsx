@@ -16,6 +16,7 @@ import PlaceAmount from "../map tools/PlaceAmount";
 import { createRoot } from "react-dom/client";
 import { useEffect, useState, useRef } from "react";
 import CurrentLocation from "../map tools/CurrentLocation";
+import CircleOverlay from "../explore body/CircleOverlay";
 
 // Custom hook to create a React root for rendering React components as Leaflet markers
 const useCreateRoot = () => {
@@ -71,9 +72,13 @@ const MapController = ({
   return null;
 };
 
-const MapSection = () => {
+interface MapSectionProps {
+  searchRadius: number;
+}
+
+const MapSection = ({ searchRadius }: MapSectionProps) => {
   const [currentLocation, setCurrentLocation] = useState<[number, number]>([
-    29.5926, 52.5836,
+    31.8445, 54.3663,
   ]);
   const [currentZoom, setCurrentZoom] = useState(15);
   const mapRef = useRef(null);
@@ -81,11 +86,11 @@ const MapSection = () => {
 
   // Sample restaurant data
   const restaurants: Restaurant[] = [
-    { id: 1, position: [29.5926, 52.5836], name: "Restaurant 1" },
-    { id: 2, position: [29.5936, 52.5846], name: "Restaurant 2" },
-    { id: 3, position: [29.5916, 52.5826], name: "Restaurant 3" },
-    { id: 4, position: [29.5946, 52.5856], name: "Restaurant 4" },
-    { id: 5, position: [29.5906, 52.5816], name: "Restaurant 5" },
+    { id: 1, position: [31.8457, 54.3686], name: "Restaurant 1" },
+    { id: 2, position: [31.8437, 54.3649], name: "Restaurant 2" },
+    { id: 3, position: [31.8440, 54.3661], name: "Restaurant 3" },
+    { id: 4, position: [31.8465, 54.3619], name: "Restaurant 4" },
+    { id: 5, position: [31.8432, 54.3648], name: "Restaurant 5" },
   ];
 
   const handleGetCurrentLocation = () => {
@@ -142,7 +147,7 @@ const MapSection = () => {
         />
       ));
     } else {
-      const centerPosition: [number, number] = [29.5926, 52.5836];
+      const centerPosition: [number, number] = [31.8445, 54.3663];
       return (
         <Marker
           position={centerPosition}
@@ -175,6 +180,9 @@ const MapSection = () => {
 
         <MapController center={currentLocation} onZoomEnd={handleZoomEnd} />
         <MapEventHandler onMoveEnd={handleMapMoveEnd} />
+
+        {/* Add Circle Overlay */}
+        <CircleOverlay center={currentLocation} radius={searchRadius} />
 
         {/* Restaurant Markers */}
         {createMarkers()}
