@@ -36,9 +36,9 @@ const ProductTracker = ({
   const [productCount, setProductCount] = useState<number>(count);
   useEffect(() => {
     if (setCount) {
-      setCount(count);
+      setCount(productCount);
     }
-  }, []);
+  }, [setCount, productCount]);
 
   const increaseProductCount = () => {
     setProductCount((prev) => prev + 1);

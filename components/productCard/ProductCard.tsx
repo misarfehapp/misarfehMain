@@ -8,11 +8,11 @@ import dynamic from "next/dynamic";
 
 interface ProductCardProps {
   title: string;
-  priceBefore: number;
-  priceAfter: number;
   discount: number;
-  productImageSrc: StaticImageData;
-  restaurantImageSrc: StaticImageData;
+  priceAfter: number;
+  priceBefore: number;
+  productImageSrc: string | StaticImageData;
+  restaurantImageSrc: string | StaticImageData;
   descriptionTitle: string;
   description: string;
   startPickUp: string;
@@ -23,9 +23,9 @@ interface ProductCardProps {
 
 const ProductCard = ({
   title,
-  priceBefore,
-  priceAfter,
   discount,
+  priceAfter,
+  priceBefore,
   productImageSrc,
   restaurantImageSrc,
   descriptionTitle,
@@ -60,8 +60,8 @@ const ProductCard = ({
         </div>
 
         <Image
-          src={productImageSrc}
-          alt="product"
+          src={typeof productImageSrc === 'string' ? productImageSrc : productImageSrc.src}
+          alt={title}
           width={width ? 398 : 245}
           height={125}
           className={`rounded-rounded-7 ${width ? "h-[164px]" : ""}`}
@@ -97,7 +97,7 @@ const ProductCard = ({
         {/* restaurant image */}
         <div className="absolute -bottom-[38px] left-[1px] ring-2 ring-white rounded-tr-rounded-7 rounded-bl-rounded-7">
           <Image
-            src={restaurantImageSrc}
+            src={typeof restaurantImageSrc === 'string' ? restaurantImageSrc : restaurantImageSrc.src}
             alt="restaurant"
             width={31}
             height={24}

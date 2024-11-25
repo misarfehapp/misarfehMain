@@ -1,24 +1,31 @@
-import ChevronLeftGreen from "./ChevronLeftGreen";
-import ProductImageSrc from "@/components/productCard/bg.jpeg";
-import RestaurantImageSrc from "@/components/productCard/restaurant.jpeg";
+"use client";
+import { useEffect, useState } from "react";
 import ProductCard from "../productCard/ProductCard";
-import Link from "next/link";
+import ChevronLeftGreen from "./ChevronLeftGreen";
+import { Product } from "@/types/product";
 
 const NearbyRestaurant = () => {
-  const products = Array.from({ length: 10 }).map((_, index) => ({
-    id: index,
-    title: "صبحانه",
-    discount: 10,
-    priceAfter: 118_000,
-    priceBefore: 128_000,
-    productImageSrc: ProductImageSrc,
-    restaurantImageSrc: RestaurantImageSrc,
-    descriptionTitle: "سورپرایز صبحانه",
-    description: "برداشت امروز:",
-    startPickUp: "20:00",
-    endPickUp: "20:30",
-    distance: 5.6,
-  }));
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('/api/products?lat=29.591768&lng=52.583698');
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error('Failed to fetch products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+
   return (
     <div className="w-full flex flex-col gap-4 ">
       <div
@@ -33,7 +40,6 @@ const NearbyRestaurant = () => {
           <ChevronLeftGreen />
         </div>
       </div>
-      {/* product cards section */}
       <div
         className="flex overflow-x-auto h-[230px] w-full"
         style={{ direction: "rtl" }}
@@ -60,4 +66,5 @@ const NearbyRestaurant = () => {
     </div>
   );
 };
+
 export default NearbyRestaurant;
